@@ -1,0 +1,246 @@
+.gray {
+  background-color: #E9EBEE;
+  border-bottom: 1px solid #dddfe2;
+  overflow: auto;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: auto;
+  text-align: center;
+}
+
+.side-by-side {
+  margin: 40px 20px;
+  display: inline-block;
+  overflow: auto;
+  max-width: 500px;
+  vertical-align: top;
+}
+
+section {
+  vertical-align: top;
+  box-sizing: border-box;
+  background-color: white;
+  margin: 0 auto;
+  display: block;
+  text-align: left;
+  padding: 14px;
+  border: 1px solid #dddfe2;
+
+  & + section {
+    margin-top: 20px;
+  }
+}
+
+section.post-wrapper {
+}
+
+section:not(.post-wrapper) {
+  color: black;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    display: block;
+  }
+
+  p {
+
+  }
+
+  p + p {
+    margin-top: 10px;
+  }
+}
+
+.post-wrapper .header {
+  .profile-photo {
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #E9EBEE;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #dddfe2;
+    margin-right: 6px;
+  }
+
+  .meta {
+    display: inline-block;
+    vertical-align: middle;
+
+    h3 {
+      font-size: 14px;
+      line-height: 19px;
+      color: $blue;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 12px;
+      color: #616700;
+      line-height: 16px;
+      font-weight: 400;
+
+      .public {
+        margin-bottom: -2px;
+        display: inline-block;
+        background-image: url('../images/icons.png');
+        background-position: -51px -226px;
+        background-size: 64px 464px;
+        background-repeat: no-repeat;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+.post-wrapper .body {
+  margin-top: 8px;
+  padding-bottom: 6px;
+
+  p {
+    color: black;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 400;
+  }
+
+  .media {
+    margin-top: 10px;
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .1) inset, 0 1px 1px rgba(0, 0, 0, .05);
+
+    .image {
+      background-color: #E9EBEE;
+      width: 100%;
+      min-height: 250px;
+    }
+
+    .deck {
+      max-height: 140px;
+      height: auto;
+      margin: 10px 12px;
+
+      h1 {
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 5px;
+        max-height: 110px;
+        word-wrap: break-word;
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        max-height: 80px;
+        overflow: hidden;
+      }
+
+      h6 {
+        padding: 18px 0 12px 0;
+        color: #606770;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 11px;
+      }
+    }
+  }
+}
+
+.post .actions {
+  border-top: 1px solid #e5e5e5;
+  color: #616770;
+  font-size: 13px;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  .action {
+    flex: 1;
+    // border-radius: 4px;
+    padding: 6px 0;
+    margin: 0 4px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #F6F6F7;
+    }
+
+    .container {
+      margin: 0 auto;
+      text-align: center;
+
+      h3 {
+        display: inline-block;
+        vertical-align: middle;
+        color: #616770;
+        font-size: 13px;
+        line-height: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.icon {
+  background-image: url('../images/actions-edited.png');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px;
+
+  &.like {
+    background-size: 21px 1121px;
+    background-position: 0 -358px;
+  }
+
+  &.comment {
+    background-size: 21px 1121px;
+    background-position: 0 -282px;
+  }
+
+  &.share {
+    background-size: 21px 1121px;
+    background-position: 0 -529px;
+  }
+
+  &.ignore {
+    background-size: 21px 1121px;
+    background-position: 0 -42px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .post .actions {
+    flex-wrap: wrap;
+
+    .action {
+      .container {
+        h3 {
+          display: none;
+        }
+      }
+    }
+  }
+}
