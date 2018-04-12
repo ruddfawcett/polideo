@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$blue".
-        on line 81 of ./assets/sass/facebook.scss
+        on line 31 of ./assets/sass/facebook.scss
 
-76:     vertical-align: middle;
-77: 
-78:     h3 {
-79:       font-size: 14px;
-80:       line-height: 19px;
-81:       color: $blue;
-82:       font-weight: 600;
-83:     }
-84: 
-85:     p {
-86:       font-size: 12px;
+26:     vertical-align: middle;
+27: 
+28:     h3 {
+29:       font-size: 14px;
+30:       line-height: 19px;
+31:       color: $blue;
+32:       font-weight: 600;
+33:     }
+34: 
+35:     p {
+36:       font-size: 12px;
 
 Backtrace:
-./assets/sass/facebook.scss:81
+./assets/sass/facebook.scss:31
 /usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/script/tree/variable.rb:49:in `_perform'
 /usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/script/tree/node.rb:50:in `perform'
 /usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -91,4 +91,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blue\".\A         on line 81 of ./assets/sass/facebook.scss\A \A 76:     vertical-align: middle;\A 77: \A 78:     h3 {\A 79:       font-size: 14px;\A 80:       line-height: 19px;\A 81:       color: $blue;\A 82:       font-weight: 600;\A 83:     }\A 84: \A 85:     p {\A 86:       font-size: 12px;"; }
+  content: "Error: Undefined variable: \"$blue\".\A         on line 31 of ./assets/sass/facebook.scss\A \A 26:     vertical-align: middle;\A 27: \A 28:     h3 {\A 29:       font-size: 14px;\A 30:       line-height: 19px;\A 31:       color: $blue;\A 32:       font-weight: 600;\A 33:     }\A 34: \A 35:     p {\A 36:       font-size: 12px;"; }
