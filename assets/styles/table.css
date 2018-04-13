@@ -1,0 +1,26 @@
+table {
+  display: table;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  font-size: 12px; }
+  table tr:first-child {
+    border-bottom: 1px solid #e5e5e5; }
+  table tr:nth-child(even) {
+    background-color: rgba(240, 240, 240, 0.8); }
+  table tr th {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: left;
+    padding: 0 0 4px 0; }
+  table tr td {
+    padding: 8px 0; }
+  table tr td, table tr th {
+    padding-left: 8px; }
+  table tr a {
+    color: black;
+    text-decoration-color: black; }
+
+/*# sourceMappingURL=table.css.map */

@@ -1,0 +1,39 @@
+table {
+  display: table;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  font-size: 12px;
+
+  tr {
+    &:first-child {
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    &:nth-child(even) {
+      background-color: rgba(#F0F0F0, 0.8);
+    }
+
+    th {
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 12px;
+      text-align: left;
+      padding: 0 0 4px 0;
+    }
+
+    td {
+      padding: 8px 0;
+    }
+
+    td, th {
+      padding-left: 8px;
+    }
+
+    a {
+      color: black;
+      text-decoration-color: black;
+    }
+  }
+}
