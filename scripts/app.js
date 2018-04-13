@@ -1,20 +1,25 @@
-const ACCESS_TOKEN = 'EAACEdEose0cBAKVPRjtijrjhC8c90rcPaKlpWwFfU4WPY0U3a9kKwD5LKE8TokwtHPDJWbsp3NDYOGO7xnR9OaxjgagXyBNwZCn124IqCi4VQhxlkYLPrQcYXtEBUTb21yvAujAPygxrqkkDpXAosZB2Hk7p849bSbXyqV7JAZCaH59zHPUGnRlqGmoRijDEbdSy0aPFG1Rft3s5zMR'
-
-$(document).ready(function() {
-  $.ajaxSetup({ cache: true });
-  $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
-    FB.init({
-      appId: '',
-      version: 'v2.12'
-    });
-
-    App.start();
-  });
-});
+const ACCESS_TOKEN = ''
+const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
+const APP_ID = ''
 
 var App = {
   start: function() {
-    this.fetch_post();
+    var _this = this;
+    $('.action').on('click', _this.handleAction);
+
+    $.ajaxSetup({ cache: true });
+    $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+      FB.init({
+        appId: APP_ID,
+        version: 'v2.12'
+      });
+
+      this.fetch_post();
+    });
+  },
+  handleAction: function() {
+    let action = $(this);
+    console.log(action.data('action-tag'));
   },
   lookup_page: function(pagename) {
     var P = $.Deferred();
@@ -93,11 +98,10 @@ var App = {
   },
   fetch_post: function() {
     var _this = this;
-    let topics = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
-    let topic_idx = Math.floor(Math.random() * topics.length);
+    let topic_idx = Math.floor(Math.random() * POST_TOPICS.length);
     let page_num = Math.floor(Math.random() * 10) + 1;
     let affiliation = ['left', 'right'][Math.floor(Math.random() * 2)];
-    let page_url = `http://graphics.wsj.com/blue-feed-red-feed/data.php?page=${page_num}&keyword=${topics[topic_idx]}`;
+    let page_url = `http://graphics.wsj.com/blue-feed-red-feed/data.php?page=${page_num}&keyword=${POST_TOPICS[topic_idx]}`;
     let origin_workaround_url = `http://www.whateverorigin.org/get?url=${encodeURIComponent(page_url)}&callback=?`;
 
     $.getJSON(origin_workaround_url, function(data) {
@@ -110,5 +114,3 @@ var App = {
     });
   }
 }
-
-// 120680396518_10155935754891519
