@@ -1,5 +1,5 @@
 const APP_ID = ''
-const ACCESS_TOKEN = 'EAACEdEose0cBAKVPRjtijrjhC8c90rcPaKlpWwFfU4WPY0U3a9kKwD5LKE8TokwtHPDJWbsp3NDYOGO7xnR9OaxjgagXyBNwZCn124IqCi4VQhxlkYLPrQcYXtEBUTb21yvAujAPygxrqkkDpXAosZB2Hk7p849bSbXyqV7JAZCaH59zHPUGnRlqGmoRijDEbdSy0aPFG1Rft3s5zMR'
+const ACCESS_TOKEN = 'EAACEdEose0cBAITvZA8wK7nu7Hetg2ZAbqNJHnqSXNn0KGWlegGJu5ymp0bhsDUgg2CyI2KHhwphkhCeBc9kZBmtsO0KTPiuOdZCZANrzZC8uYjT3JZB3HXIwcZAcoZA4z2j7drAyJ0l707T6suU0oOCp92ZByloHtDlE3ZBuoP4dNWqx9hhwgBPF2jRw5uE82wnBRoLD8VqHx7MX7ZB0r7ISNnD'
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 const POINT_VALUES = {
@@ -12,7 +12,13 @@ const POINT_VALUES = {
 var App = {
   start: function() {
     var _this = this;
+
     this.db = TAFFY();
+    this.should_insert = false;
+
+    $('.action').on('click', function() {
+      _this.handle_action(this);
+    });
 
     $.ajaxSetup({ cache: true });
     $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
@@ -25,10 +31,14 @@ var App = {
     });
   },
   handle_action: function(node) {
+    if (!this.should_insert) return;
+    this.should_insert = false;
+
     var _this = this;
 
     let action_tag = $(node).data('action');
-    let alignment = $('div.post').data('alignment');
+    let post = $('#fb-post');
+    let alignment = post.attr('data-alignment');
 
     let sign = alignment == 'left' ? -1 : 1;
     let dp = sign * POINT_VALUES[action_tag];
@@ -48,15 +58,16 @@ var App = {
       'alignment': alignment,
       'dp': dp,
       'point_value': point_value,
-      'post': $('div.post').data('permalink_url'),
-      'post_source': $('div.post').data('from')
+      'post': post.attr('data-permalink_url'),
+      'post_source': post.attr('data-from')
     }
 
     if (this.db.insert(row)) {
-      console.log('asdfasdfasf');
+      this.insert_row(row);
       this.fetch_post();
     }
     else {
+      this.should_insert = true;
     }
   },
   lookup_page: function(pagename) {
@@ -81,6 +92,8 @@ var App = {
       fields: 'attachments{media,description,title},message,full_picture,created_time,status_type'
     }, function(response) {
       if (!response) return;
+      _this.should_insert = true;
+
       $('#post-body').text(response.message ? response.message : '');
 
       if (response.status_type == 'added_photos') {
@@ -124,6 +137,17 @@ var App = {
       }
     });
   },
+  insert_row: function(row) {
+    $('#record tr:last').after(`
+      <tr>
+        <td>${row.index}</td>
+        <td>${row.alignment}</td>
+        <td>${row.dp}</td>
+        <td>${row.point_value}</td>
+        <td><a href='${row.post}'>Link</a></td>
+        <td>${row.post_source}</td>
+      </tr>`);
+  },
   setup_post: function(post, alignment) {
     var _this = this;
     $('div.post').attr('data-alignment', alignment);
@@ -141,10 +165,6 @@ var App = {
   },
   fetch_post: function() {
     var _this = this;
-
-    $('.action').one('click', function() {
-      _this.handle_action(this);
-    });
 
     let topic_idx = Math.floor(Math.random() * POST_TOPICS.length);
     let page_num = Math.floor(Math.random() * 10) + 1;
