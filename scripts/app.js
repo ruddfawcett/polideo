@@ -1,5 +1,5 @@
-const APP_ID = ''
-const ACCESS_TOKEN = 'EAACEdEose0cBAITvZA8wK7nu7Hetg2ZAbqNJHnqSXNn0KGWlegGJu5ymp0bhsDUgg2CyI2KHhwphkhCeBc9kZBmtsO0KTPiuOdZCZANrzZC8uYjT3JZB3HXIwcZAcoZA4z2j7drAyJ0l707T6suU0oOCp92ZByloHtDlE3ZBuoP4dNWqx9hhwgBPF2jRw5uE82wnBRoLD8VqHx7MX7ZB0r7ISNnD'
+const APP_ID = '503600090034639'
+const ACCESS_TOKEN = 'EAACEdEose0cBAL3YUcVzo2gRHY1IChTmoiEohV7dMz9KcfrwfJlkelsuPioefBURfQdC5336sLDk7p8tymDjfony1N30tJtX0Vbcq8ylhtQCOQ94zQb5EZBZC1S4ey3BgSkI3T9ldDZAHZB2ZCxzS3SNpZAMgBdREPP7R376ZAnr0EG8VMmpNuK8ltCM9Ur1ZA0ZD'
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 const POINT_VALUES = {
@@ -18,6 +18,14 @@ var App = {
 
     $('.action').on('click', function() {
       _this.handle_action(this);
+    });
+
+    $('.reveal-text').on('mouseover', function() {
+      if ($(this).attr('data-actual')) {
+        $(this).text($(this).attr('data-actual'));
+      }
+    }).on('mouseout', function() {
+        $(this).text($(this).attr('data-default'));
     });
 
     $.ajaxSetup({ cache: true });
@@ -73,12 +81,13 @@ var App = {
   lookup_page: function(pagename) {
     var P = $.Deferred();
     FB.api(`/${pagename}`, {
-      access_token: ACCESS_TOKEN,
-      fields: 'id'
+      access_token: ACCESS_TOKEN
     }, function(response) {
       if (!response) {
         P.reject();
       };
+
+      $('#post-page').attr('data-actual', response.name);
 
       P.resolve(response.id);
     });
@@ -87,9 +96,10 @@ var App = {
   },
   lookup_post: function(page_id, post_id) {
     var _this = this;
+    console.log(`/${page_id}_${post_id}`);
     FB.api(`/${page_id}_${post_id}`, {
       access_token: ACCESS_TOKEN,
-      fields: 'attachments{media,description,title},message,full_picture,created_time,status_type'
+      fields: 'attachments{media,description,title, url},message,full_picture,created_time,status_type'
     }, function(response) {
       if (!response) return;
       _this.should_insert = true;
@@ -117,7 +127,7 @@ var App = {
                   <div class='deck'>
                     <h1 id='post-attachment-title'>Mei elitr aperiri rationibus id nulla expetenda pro ad</h1>
                     <p id='post-attachment-description'>Ea his partem erroribus, est ea labore utroque delectus, sea meliore platonem ut. Ex odio diam voluptatibus sea, doming mollis civibus ea nec.</p>
-                    <h6 id='post-attachment-source'>website.com</h6>
+                    <h6 class='reveal-text' id='post-attachment-source' data-default='website.com'>website.com</h6>
                   </div>
                 </div>`).insertAfter('#post-body');
           }
@@ -125,6 +135,19 @@ var App = {
           let attachment = response.attachments.data[0];
           $('#post-attachment-title').text(attachment.title ? attachment.title : '');
           $('#post-attachment-description').text(attachment.description ? attachment.description : '');
+
+          let attachment_url = new URL(attachment.url);
+          let encoded_uri = attachment_url.search.replace('?u=', '');
+          let decoded =  decodeURIComponent(encoded_uri);
+          let url = new URL(decoded);
+          let hostname_parts = url.hostname.split('.');
+          let website = hostname_parts[hostname_parts.length - 2] + '.' + hostname_parts[hostname_parts.length - 1];
+
+          $('#post-attachment-source').attr('data-actual', website);
+
+          $('#post-attachment').on('click', function() {
+            window.open(url, '_blank');
+          });
 
           if (response.full_picture) {
             $('#post-full_picture').css('background-image', `url(${response.full_picture})`);
