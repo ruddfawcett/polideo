@@ -1,5 +1,5 @@
 const APP_ID = '503600090034639'
-const ACCESS_TOKEN = 'EAACEdEose0cBAHGURGQWriAraABoy7sUEoy2QENnFgAmrl04YjJiQ1tV7idIePURpghNnpTjZBk6fnrKaRY4dbRvzY5NZCe0EOrvEZBbGQEmlMOgz7ZCv2BTMZB1yVOtjHONlh6u6okYTWDZCil30fZAsOU5y3grM5xQZBRcbsNFmBtdQUQkstqrEyotezmZCcoccRHapTPOo2JLh9Kn3DSPR'
+const ACCESS_TOKEN = 'EAACEdEose0cBACPhlZBO77X8vtudAAe5ghSl1RMHZAuMQvFvQZAkWncA993RUYdOrrzvwSGQP00sPvS4PS1Hhl8kjommdIsnoi8s9WfhOQakFJBr4Nv3jZBguMFYcfpyJwHVrcp4DuAbAhJdsDAwhAs4BADoDDrfZCHL3i1jUUAxFztJtiMqIiSFPPcittNvLA61ZBHfmZBpaozJFPpQQfN'
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 const POINT_VALUES = {
