@@ -8,6 +8,14 @@ div.post {
   margin: 0 auto;
   text-align: left;
   font-family: system, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif;
+
+  &.left {
+    background-color: rgba(blue, 0.05);
+  }
+
+  &.right {
+    background-color: rgba(red, 0.05);
+  }
 }
 
 div.post .header {
