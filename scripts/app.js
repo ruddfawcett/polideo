@@ -1,15 +1,79 @@
 const APP_ID = '503600090034639'
-const ACCESS_TOKEN = 'EAACEdEose0cBAL3YUcVzo2gRHY1IChTmoiEohV7dMz9KcfrwfJlkelsuPioefBURfQdC5336sLDk7p8tymDjfony1N30tJtX0Vbcq8ylhtQCOQ94zQb5EZBZC1S4ey3BgSkI3T9ldDZAHZB2ZCxzS3SNpZAMgBdREPP7R376ZAnr0EG8VMmpNuK8ltCM9Ur1ZA0ZD'
+const ACCESS_TOKEN = 'EAACEdEose0cBAHGURGQWriAraABoy7sUEoy2QENnFgAmrl04YjJiQ1tV7idIePURpghNnpTjZBk6fnrKaRY4dbRvzY5NZCe0EOrvEZBbGQEmlMOgz7ZCv2BTMZB1yVOtjHONlh6u6okYTWDZCil30fZAsOU5y3grM5xQZBRcbsNFmBtdQUQkstqrEyotezmZCcoccRHapTPOo2JLh9Kn3DSPR'
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 const POINT_VALUES = {
-  'like': 1,
-  'comment': 3,
-  'share': 5,
-  'ignore': 0
+  like: 1,
+  comment: 3,
+  share: 5,
+  ignore: 0
+}
+
+var PMath = {
+  AR: function(sumA, totN) {
+    return sumA / totN;
+  },
+  AE: function(AR, sumAPV) {
+    return AR * sumAPV;
+  },
+  IA: function(AEm, AEM) {
+    return AEm / AEM;
+  },
+  AP: 9,
+  fPV: function(IA, AP, PV, n) {
+    return PV + this.fDPV(IA, AP, PV, n);
+  },
+  fDPV: function(IA, AP, PV, n) {
+    if (Math.abs(AP + PV) >= Math.abs(PV)) {
+      return (AP / n) * (1 / Math.pow(PV, 2));
+    }
+    else {
+      return (AP / n) * (1 / Math.pow(PV, 2)) * IA;
+    }
+  }
 }
 
 var App = {
+  calculate: function() {
+    let totN = this.db().count();
+    let lN = this.db({alignment: 'left'}).count();
+    let rN = this.db({alignment: 'right'}).count();
+
+    if (lN == 0 || rN == 0) {
+      return;
+    }
+
+    let lsumPV = this.db({alignment: 'left'}).sum('dp');
+    let rsumPV = this.db({alignment: 'right'}).sum('dp');
+
+    var AEm = 0;
+    var AEM = 0;
+
+    // Left is the alignment minority or it's arbitrary (they are equal).
+    if (lN <= rN) {
+      var ARm = PMath.AR(lN, totN);
+      var ARM = PMath.AR(rN, totN);
+
+      AEm = PMath.AE(ARm, lsumPV);
+      AEM = PMath.AE(ARM, rsumPV);
+    }
+    // Right is the alignment minority.
+    else {
+      var ARm = PMath.AR(rN, totN);
+      var ARM = PMath.AR(lN, totN);
+
+      AEm = PMath.AE(ARm, rsumPV);
+      AEM = PMath.AE(ARM, lsumPV);
+    }
+
+    let IA = PMath.IA(AEm, AEM);
+    let PV = this.db().last().point_value;
+
+    let calculatedValue = PMath.fPV(IA, PMath.AP, PV, totN);
+
+    $('#fPV-value').html(`\\[f_{PV}(IA, \ AP,\ PV) = ${calculatedValue}\\]`);
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'fPV-value']);
+  },
   start: function() {
     var _this = this;
 
@@ -71,6 +135,7 @@ var App = {
     }
 
     if (this.db.insert(row)) {
+      this.calculate();
       this.insert_row(row);
       this.fetch_post();
     }
@@ -96,7 +161,6 @@ var App = {
   },
   lookup_post: function(page_id, post_id) {
     var _this = this;
-    console.log(`/${page_id}_${post_id}`);
     FB.api(`/${page_id}_${post_id}`, {
       access_token: ACCESS_TOKEN,
       fields: 'attachments{media,description,title, url},message,full_picture,created_time,status_type'
@@ -174,6 +238,9 @@ var App = {
   setup_post: function(post, alignment) {
     var _this = this;
     $('div.post').attr('data-alignment', alignment);
+    $('div.post').removeClass('left');
+    $('div.post').removeClass('right');
+    $('div.post').addClass(alignment);
     $('div.post').attr('data-permalink_url', post.permalink_url);
     $('div.post').attr('data-from', post.from);
 
