@@ -74,11 +74,38 @@
           </tr>
         </table>
       </section>
+      <section>
+        <div class='math'>
+          <p>Using the following mathematical method for numerically classifying political bias&hellip;</p>
+          <br />
+          \[
+            f_{PV}(IA, \ AP,\ PV) = PV \ + \
+            \begin{cases}
+            (\frac{AP}{n})(\frac{1}{{PV}^2}) & \text{if } |AP+PV| \geq |PV| \\
+            (\frac{AP}{n})(\frac{1}{{PV}^2})(IA) & \text{if } |AP+PV| < |PV|
+            \end{cases}
+          \]
+          <br />
+          <p>Currently, assuming that the <em>AE<sub>m</sub> &ne; 0</em> and <em>AE<sub>M</sub> &ne; 0</em>:</p>
+          <br />
+          <div id='fPV-value'>
+            \[
+              f_{PV}(IA, \ AP,\ PV) = N/A
+            \]
+          </div>
+        </div>
+      </section>
     </main>
     <!-- <div class='module'>
     </div> -->
 
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+    <script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     <script src='scripts/taffy.min.js'></script>
     <script src='scripts/app.js'></script>
     <script type='text/javascript'>
