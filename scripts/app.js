@@ -19,22 +19,22 @@ var PMath = {
   IA: function(AEm, AEM) {
     return AEm / AEM;
   },
-  AP: 9,
-  fPV: function(IA, AP, PV, n) {
-    return PV + this.fDPV(IA, AP, PV, n);
+  maxAP: 5,
+  fPV: function(IA, AP, PV) {
+    return PV + this.fDPV(IA, AP, PV);
   },
-  fDPV: function(IA, AP, PV, n) {
+  fDPV: function(IA, AP, PV) {
     if (Math.abs(AP + PV) >= Math.abs(PV)) {
-      return (AP / n) * (1 / Math.pow(PV, 2));
+      return (AP / this.maxAP) * Math.pow(PV, 2);
     }
     else {
-      return (AP / n) * (1 / Math.pow(PV, 2)) * IA;
+      return -1 * (AP / this.maxAP) * Math.pow(PV, 2) * IA;
     }
   }
 }
 
 var App = {
-  calculate: function() {
+  calculate: function(AP) {
     let totN = this.db().count();
     let lN = this.db({alignment: 'left'}).count();
     let rN = this.db({alignment: 'right'}).count();
@@ -69,8 +69,9 @@ var App = {
     let IA = PMath.IA(AEm, AEM);
     let PV = this.db().last().point_value;
 
-    let calculatedValue = PMath.fPV(IA, PMath.AP, PV, totN);
+    let calculatedValue = PMath.fPV(IA, AP, PV);
 
+    console.log(`fPV(IA, AP, PV) = ${calculatedValue}`);
     $('#fPV-value').html(`\\[f_{PV}(IA, \ AP,\ PV) = ${calculatedValue}\\]`);
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'fPV-value']);
   },
@@ -135,7 +136,7 @@ var App = {
     }
 
     if (this.db.insert(row)) {
-      this.calculate();
+      this.calculate(Math.abs(dp));
       this.insert_row(row);
       this.fetch_post();
     }
