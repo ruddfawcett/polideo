@@ -1,5 +1,5 @@
 const APP_ID = '503600090034639'
-const ACCESS_TOKEN = 'EAACEdEose0cBACPhlZBO77X8vtudAAe5ghSl1RMHZAuMQvFvQZAkWncA993RUYdOrrzvwSGQP00sPvS4PS1Hhl8kjommdIsnoi8s9WfhOQakFJBr4Nv3jZBguMFYcfpyJwHVrcp4DuAbAhJdsDAwhAs4BADoDDrfZCHL3i1jUUAxFztJtiMqIiSFPPcittNvLA61ZBHfmZBpaozJFPpQQfN'
+const ACCESS_TOKEN = 'EAACEdEose0cBAJNGPFdN2GYmX10gZChzT3tI7kKbU08UZCWbL7KJ8pyIvdUwkdRtZB0MY3xbjZBHnSVrfZA645rat0ZBLgqUj9HXlkQZAbqPQd7ZAZCzd7XxF43U6GPce1CNZBkBfKQD3iUtDteZBFnwM3dl5focso36SgdMzLFTjD9gFDkO8PmW8dnZAWeTVHnnYeI3J9z3xIMK7CqJu7M9ZBZC4G'
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 const POINT_VALUES = {
@@ -25,10 +25,10 @@ var PMath = {
   },
   fDPV: function(IA, AP, PV) {
     if (Math.abs(AP + PV) >= Math.abs(PV)) {
-      return (AP / this.maxAP) * Math.pow(PV, 2);
+      return (AP / this.maxAP) * Math.pow((1 - Math.abs(PV)), 2);
     }
     else {
-      return -1 * (AP / this.maxAP) * Math.pow(PV, 2) * IA;
+      return -1 * (AP / this.maxAP) * Math.pow((1 - Math.abs(PV)), 2) * IA;
     }
   }
 }
@@ -136,8 +136,8 @@ var App = {
     }
 
     if (this.db.insert(row)) {
-      this.calculate(Math.abs(dp));
       this.insert_row(row);
+      this.calculate(Math.abs(dp));
       this.fetch_post();
     }
     else {

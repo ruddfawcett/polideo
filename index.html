@@ -79,10 +79,10 @@
           <p>Using the following mathematical method for numerically classifying political bias&hellip;</p>
           <br />
           \[
-            f_{PV}(IA, \ AP,\ PV) = PV \ + \
+            f_{PV}(IA, \ AP,\ PV_{n-1}) = PV_{n-1} \ + \
             \begin{cases}
-            (\frac{AP}{5}){{PV}^2} & \text{if } |AP+PV| \geq |PV| \\
-            (\frac{AP}{5}){{PV}^2}(IA) & \text{if } |AP+PV| < |PV|
+             (\frac{AP}{5})((1-|PV|)^2) & \text{if } |AP+PV| \geq |PV| \\
+           - (\frac{AP}{5})((1-|PV|)^2)(IA) & \text{if } |AP+PV| < |PV|
             \end{cases}
           \]
           <br />
@@ -90,7 +90,7 @@
           <br />
           <div id='fPV-value'>
             \[
-              f_{PV}(IA, \ AP,\ PV) = N/A
+              f_{PV}(IA, \ AP,\ PV_{n-1}) = N/A
             \]
           </div>
         </div>
