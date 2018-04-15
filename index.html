@@ -67,10 +67,11 @@
           <tr>
             <th>Index</th>
             <th>Alignment</th>
-            <th>&Delta;P</th>
-            <th>Point Value</th>
-            <th>Post</th>
-            <th>Post Source</th>
+            <th>Engagemnt Value (EV)</th>
+            <th>&sum; EV</th>
+            <th>PV</th>
+            <!-- <th>Post</th>
+            <th>Post Source</th> -->
           </tr>
         </table>
       </section>
@@ -79,10 +80,10 @@
           <p>Using the following mathematical method for numerically classifying political bias&hellip;</p>
           <br />
           \[
-            f_{PV}(IA, \ AP,\ PV_{n-1}) = PV_{n-1} \ + \
+            f_{PV}(IA, \ EV,\ PV_{n-1}) = PV_{n-1} \ + \
             \begin{cases}
-             (\frac{AP}{5})((1-|PV|)^2) & \text{if } |AP+PV| \geq |PV| \\
-           - (\frac{AP}{5})((1-|PV|)^2)(IA) & \text{if } |AP+PV| < |PV|
+             (\frac{EV}{5})((1-|PV|)^2) & \text{if } |EV+PV| \geq |PV| \\
+           - (\frac{EV}{5})((1-|PV|)^2)(IA) & \text{if } |EV+PV| < |PV|
             \end{cases}
           \]
           <br />
@@ -90,7 +91,7 @@
           <br />
           <div id='fPV-value'>
             \[
-              f_{PV}(IA, \ AP,\ PV_{n-1}) = N/A
+              f_{PV}(IA, \ EV,\ PV_{n-1}) = N/A
             \]
           </div>
         </div>
