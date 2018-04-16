@@ -337,6 +337,8 @@ section.interactive ul.tabs-headers {
     margin-bottom: -1px;
     border: 1px solid #e5e5e5;
     outline: none; }
+    section.interactive ul.tabs-headers li:first-child {
+      margin-left: 20px; }
     section.interactive ul.tabs-headers li.ui-tabs-active {
       background-color: white;
       border-bottom: 1px solid white; }

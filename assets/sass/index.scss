@@ -173,6 +173,10 @@ section.interactive {
       border: 1px solid #e5e5e5;
       outline: none;
 
+      &:first-child {
+        margin-left: 20px;
+      }
+
       &.ui-tabs-active {
         background-color: white;
         border-bottom: 1px solid white;
