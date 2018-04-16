@@ -13,7 +13,7 @@ const POINT_VALUES = {
 
 var PMath = {
   VOLATILITY: -1,
-  PPV: 0,
+  PAV: 0,
   EVMAX: 5,
   AR: function(sumA, totN) {
     return sumA / totN;
@@ -24,28 +24,28 @@ var PMath = {
   IA: function(AEm, AEM) {
     return Math.abs(AEm) / Math.abs(AEM);
   },
-  fPV: function(IA, EV, PV) {
-    return PV + this.fDPV(IA, EV, PV);
+  fAV: function(IA, EV, AV) {
+    return AV + this.fDAV(IA, EV, AV);
   },
-  fDPV: function(IA, EV, PV) {
-    if (Math.abs(EV + PV) >= Math.abs(PV)) {
-      return (EV / this.EVMAX) * Math.pow((1 - Math.abs(PV)), 2);
+  fDAV: function(IA, EV, AV) {
+    if (Math.abs(EV + AV) >= Math.abs(AV)) {
+      return (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2);
     }
     else {
-      return this.VOLATILITY * (EV / this.EVMAX) * Math.pow((1 - Math.abs(PV)), 2) * IA;
+      return this.VOLATILITY * (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2) * IA;
     }
   }
 }
 
 var App = {
-  // Assumes that there is already a post with a PV.
-  calculate: function(EV, PV) {
+  // Assumes that there is already a post with a AV.
+  calculate: function(EV, AV) {
     let totN = this.db().count();
     let lN = this.db({alignment: 'left'}).count();
     let rN = this.db({alignment: 'right'}).count();
 
-    let lsumEV = this.db({alignment: 'left'}).sum('ev');
-    let rsumEV = this.db({alignment: 'right'}).sum('ev');
+    let lsumEV = this.db({alignment: 'left'}).sum('EV');
+    let rsumEV = this.db({alignment: 'right'}).sum('EV');
 
     var lAR = PMath.AR(lN, totN);
     var rAR = PMath.AR(rN, totN);
@@ -54,13 +54,9 @@ var App = {
     var rAE = PMath.AE(lAE, rsumEV);
 
     let IA = (Math.abs(lAE) <= Math.abs(rAE)) ? PMath.IA(lAE, rAE) : PMath.IA(rAE, lAE);
-    let nPV = PMath.fPV(IA, EV, PV);
+    let nAV = PMath.fAV(IA, EV, AV);
 
-    console.log(`fPV(IA, EV, PV) = ${nPV}`);
-    $('#fPV-value').html(`\\[f_{PV}(IA, \ EV,\ PV) = ${nPV}\\]`);
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'fPV-value']);
-
-    return nPV;
+    return nAV;
   },
   start: function() {
     var _this = this;
@@ -111,20 +107,20 @@ var App = {
     let last_entry = this.db().last();
 
     // Initial P value as a raio of your engagement value * a constant.
-    var PV = EV * 0.05;
+    var AV = EV * 0.05;
 
     if (last_entry) {
       index = last_entry.index + 1;
-      engagement_value = last_entry.ev_sum + EV;
-      PV = this.calculate(EV, last_entry.pv);
+      engagement_value = last_entry.EV_sum + EV;
+      AV = this.calculate(EV, last_entry.AV);
     }
 
     var row = {
       'index': index,
       'alignment': alignment,
-      'ev': EV,
-      'ev_sum': engagement_value,
-      'pv': PV,
+      'EV': EV,
+      'EV_sum': engagement_value,
+      'AV': AV,
       'post': post.attr('data-permalink_url'),
       'post_source': post.attr('data-from')
     }
@@ -223,11 +219,10 @@ var App = {
       <tr>
         <td>${row.index}</td>
         <td>${row.alignment}</td>
-        <td>${row.ev}</td>
-        <td>${row.ev_sum}</td>
-        <td>${row.pv}</td>
-        <!-- <td><a href='${row.post}'>Link</a></td>
-        <td>${row.post_source}</td> -->
+        <td>${row.EV}</td>
+        <td>${row.AV}</td>
+        <td><a href='${row.post}'>Link</a></td>
+        <td>${row.post_source}</td>
       </tr>`);
   },
   setup_post: function(post, alignment) {
