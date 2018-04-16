@@ -70,7 +70,7 @@
             <li><a href='#tabs-3'>XYZ</a></li>
           </ul>
           <div id='tabs-1'>
-
+            <p></p>
           </div>
           <div id='tabs-2'>
             <div class='graph' id='av-ev-graph'></div>
@@ -111,7 +111,42 @@
           </tr>
           <tr>
             <td><em>AV</em><br />Alignment Value</td>
-            <td>A signed float between -1.0 and 1.0 that describes a user’s political alignment based on the formula described further below. Positive values refer to a more conservative user, while negative values refer to a more liberal user. </td>
+            <td>A signed float between -1.0 and 1.0 that describes a user’s political alignment based on the <a href='#av-formula'>formula described further below</a>. Positive values refer to a more conservative user, while negative values refer to a more liberal user.
+              <table>
+                <tr>
+                  <th>Alignment Value (AV)</th>
+                  <th>Qualified Ideology</th>
+                </tr>
+                <tr>
+                  <td>(-1.0, -0.7)</td>
+                  <td>very liberal</td>
+                </tr>
+                <tr>
+                  <td>[-0.7, -0.4)</td>
+                  <td>liberal</td>
+                </tr>
+                <tr>
+                  <td>[-0.4, -0.2)</td>
+                  <td>moderately liberal</td>
+                </tr>
+                <tr>
+                  <td>[-0.2, +0.2]</td>
+                  <td>centrist</td>
+                </tr>
+                <tr>
+                  <td>(0.2, 0.4]</td>
+                  <td>moderately conservative</td>
+                </tr>
+                <tr>
+                  <td>(0.4, 0.7]</td>
+                  <td>conservative</td>
+                </tr>
+                <tr>
+                  <td>(0.7, 1.0)</td>
+                  <td>very conservative</td>
+                </tr>
+              </table>
+            </td>
           </tr>
           <tr>
             <td><em>EV</em><br />Engagement Value</td>
@@ -171,7 +206,7 @@
           <li><p>User’s Alignment Value must remain within the range of (-1, 1).</p></li>
           <li><p>Engagement Values should be weighted more heavily when they appear in a pattern; if your engagement history tells us that you more frequently and heavily interact with conservative articles, then engaging with another “conservative” article shouldn’t be that surprising and should push you closer to 1 at a lesser rate.</p></li>
         </ul>
-        <h4>Formula</h4>
+        <h4 id='av-formula'>Formula</h4>
         <p>As combining engagement values without wanting to surpass a limit (-1 or 1) clearly implies an infinite series, the following formula was derived from a P-series consisting of an infinite sum of fractional values:</p>
         <div class='mathjax'>
           \[

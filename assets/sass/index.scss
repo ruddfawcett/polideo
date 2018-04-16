@@ -10,6 +10,13 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #339c9e;
+}
+
 body, html {
   width: 100%;
   height: 100%;
@@ -114,13 +121,6 @@ section:not(.post) {
 
   p {
     line-height: 24px;
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: #339c9e;
-    }
 
     b {
       color: #339c9e;

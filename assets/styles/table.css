@@ -24,9 +24,6 @@ table {
       padding: 8px 0; }
     table tr td, table tr th {
       padding-left: 8px; }
-    table tr a {
-      color: black;
-      text-decoration-color: black; }
 
 table.definitions {
   margin: 48px 0 32px 0; }

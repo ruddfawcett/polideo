@@ -175,9 +175,6 @@ table {
       padding: 8px 0; }
     table tr td, table tr th {
       padding-left: 8px; }
-    table tr a {
-      color: black;
-      text-decoration-color: black; }
 
 table.definitions {
   margin: 48px 0 32px 0; }
@@ -213,6 +210,12 @@ table.definitions {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #339c9e; }
 
 body, html {
   width: 100%;
@@ -297,11 +300,6 @@ section:not(.post) {
     display: block; }
   section:not(.post) p {
     line-height: 24px; }
-    section:not(.post) p a {
-      text-decoration: none;
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: #339c9e; }
     section:not(.post) p b {
       color: #339c9e;
       font-weight: 500; }
