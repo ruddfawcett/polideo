@@ -38,26 +38,6 @@ var PMath = {
 }
 
 var App = {
-  // Assumes that there is already a post with a AV.
-  calculate: function(EV, AV) {
-    let totN = this.db().count();
-    let lN = this.db({alignment: 'left'}).count();
-    let rN = this.db({alignment: 'right'}).count();
-
-    let lsumEV = this.db({alignment: 'left'}).sum('EV');
-    let rsumEV = this.db({alignment: 'right'}).sum('EV');
-
-    var lAR = PMath.AR(lN, totN);
-    var rAR = PMath.AR(rN, totN);
-
-    var lAE = PMath.AE(lAR, lsumEV);
-    var rAE = PMath.AE(lAE, rsumEV);
-
-    let IA = (Math.abs(lAE) <= Math.abs(rAE)) ? PMath.IA(lAE, rAE) : PMath.IA(rAE, lAE);
-    let nAV = PMath.fAV(IA, EV, AV);
-
-    return nAV;
-  },
   start: function() {
     var _this = this;
 
@@ -97,6 +77,7 @@ var App = {
     let action_tag = $(node).data('action');
     let post = $('#fb-post');
     let alignment = post.attr('data-alignment');
+    let topic = post.attr('data-topic');
 
     let sign = alignment == 'left' ? -1 : 1;
     let EV = sign * POINT_VALUES[action_tag];
@@ -118,6 +99,7 @@ var App = {
     var row = {
       'index': index,
       'alignment': alignment,
+      'topic': topic,
       'EV': EV,
       'EV_sum': engagement_value,
       'AV': AV,
@@ -126,18 +108,19 @@ var App = {
     }
 
     if (this.db.insert(row)) {
-      graph.series[0].addPoint({
+      var point_bones = {
         x: this.db().count(),
         y: EV,
         alignment: alignment,
+        topic: topic,
         post_source: post.attr('data-from')
-      });
-      graph.series[1].addPoint({
-        x: this.db().count(),
-        y: AV,
-        alignment: alignment,
-        post_source: post.attr('data-from')
-      });
+      }
+
+      let ev_point = point_bones.ev = EV;
+      let av_point = point_bones.av = AV;
+
+      graph.series[0].addPoint(ev_point);
+      graph.series[1].addPoint(av_point);
 
       this.insert_row(row);
       this.fetch_post();
@@ -145,6 +128,25 @@ var App = {
     else {
       this.should_insert = true;
     }
+  },
+  calculate: function(EV, AV) {
+    let totN = this.db().count();
+    let lN = this.db({alignment: 'left'}).count();
+    let rN = this.db({alignment: 'right'}).count();
+
+    let lsumEV = this.db({alignment: 'left'}).sum('EV');
+    let rsumEV = this.db({alignment: 'right'}).sum('EV');
+
+    var lAR = PMath.AR(lN, totN);
+    var rAR = PMath.AR(rN, totN);
+
+    var lAE = PMath.AE(lAR, lsumEV);
+    var rAE = PMath.AE(lAE, rsumEV);
+
+    let IA = (Math.abs(lAE) <= Math.abs(rAE)) ? PMath.IA(lAE, rAE) : PMath.IA(rAE, lAE);
+    let nAV = PMath.fAV(IA, EV, AV);
+
+    return nAV;
   },
   lookup_page: function(pagename) {
     var P = $.Deferred();
@@ -240,6 +242,7 @@ var App = {
             <td>&hellip;</td>
             <td>&hellip;</td>
             <td>&hellip;</td>
+            <td>&hellip;</td>
           </tr>`);
       }
 
@@ -250,15 +253,17 @@ var App = {
       <tr class='inserted-row'>
         <td>${row.index}</td>
         <td>${row.alignment}</td>
+        <td>${row.topic}</td>
         <td>${row.EV}</td>
         <td>${row.AV}</td>
         <td><a href='${row.post}'>Link</a></td>
         <td>${row.post_source}</td>
       </tr>`);
   },
-  setup_post: function(post, alignment) {
+  setup_post: function(post, alignment, topic) {
     var _this = this;
     $('div.post').attr('data-alignment', alignment);
+    $('div.post').attr('data-topic', topic);
     $('div.post').attr('data-permalink_url', post.permalink_url);
     $('div.post').attr('data-from', post.from);
 
@@ -284,8 +289,9 @@ var App = {
     }
 
     let topic_idx = Math.floor(Math.random() * POST_TOPICS.length);
+    let topic = POST_TOPICS[topic_idx];
     let page_num = Math.floor(Math.random() * 10) + 1;
-    let page_url = `http://grEVhics.wsj.com/blue-feed-red-feed/data.php?page=${page_num}&keyword=${POST_TOPICS[topic_idx]}`;
+    let page_url = `http://grEVhics.wsj.com/blue-feed-red-feed/data.php?page=${page_num}&keyword=${topic}`;
     let origin_workaround_url = `http://www.whateverorigin.org/get?url=${encodeURIComponent(page_url)}&callback=?`;
 
     $.getJSON(origin_workaround_url, function(data) {
@@ -294,7 +300,7 @@ var App = {
       let posts = contents[alignment];
 
       let random_post = posts[Math.floor(Math.random() * posts.length)];
-      _this.setup_post(random_post, alignment);
+      _this.setup_post(random_post, alignment, topic);
     });
   }
 }
