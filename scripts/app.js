@@ -108,19 +108,19 @@ var App = {
     }
 
     if (this.db.insert(row)) {
-      var point_bones = {
-        x: this.db().count(),
-        y: EV,
-        alignment: alignment,
-        topic: topic,
-        post_source: post.attr('data-from')
+      var _this = this;
+      function point(isEV) {
+        return {
+          x: _this.db().count(),
+          y: isEV ? EV : AV,
+          alignment: alignment,
+          topic: topic,
+          post_source: post.attr('data-from')
+        }
       }
 
-      let ev_point = point_bones.ev = EV;
-      let av_point = point_bones.av = AV;
-
-      graph.series[0].addPoint(ev_point);
-      graph.series[1].addPoint(av_point);
+      graph.series[0].addPoint(point(true));
+      graph.series[1].addPoint(point(false));
 
       this.insert_row(row);
       this.fetch_post();

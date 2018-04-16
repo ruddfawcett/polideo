@@ -19,10 +19,10 @@ var graph = Highcharts.chart('av-ev-graph', {
     borderWidth: 0,
     shared: true,
     formatter: function() {
-      console.log(App);
       return `<div>
                 <b>Post: </b>${this.x}<br />
                 <b>Alignment: </b>${this.points[0].point.alignment}<br />
+                <b>Post Topic: </b>${this.points[0].point.topic}<br />
                 <b>Engagement Value (EV): </b>${this.points[0].y}<br />
                 <b>Alignment Value (AV): </b>${this.points[1].y}<br />
               </div>`;
