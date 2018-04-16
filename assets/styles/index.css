@@ -155,24 +155,58 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  font-size: 12px; }
-  table tr:first-child {
+  font-size: 13px; }
+  table tr {
     border-bottom: 1px solid #e5e5e5; }
-  table tr:nth-child(even) {
-    background-color: rgba(240, 240, 240, 0.8); }
-  table tr th {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 12px;
-    text-align: left;
-    padding: 0 0 4px 0; }
-  table tr td {
-    padding: 8px 0; }
-  table tr td, table tr th {
-    padding-left: 8px; }
-  table tr a {
-    color: black;
-    text-decoration-color: black; }
+    table tr:nth-child(even) {
+      background-color: rgba(240, 240, 240, 0.5); }
+    table tr:last-child {
+      border-bottom: none; }
+    table tr > th {
+      border-bottom: 1px solid #e5e5e5; }
+    table tr th {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 12px;
+      text-align: left;
+      padding: 0 0 4px 0; }
+    table tr td {
+      padding: 8px 0; }
+    table tr td, table tr th {
+      padding-left: 8px; }
+    table tr a {
+      color: black;
+      text-decoration-color: black; }
+
+table.definitions {
+  margin: 48px 0 32px 0; }
+  table.definitions table {
+    table-layout: fixed;
+    margin-top: 24px;
+    font-size: 11px; }
+    table.definitions table th {
+      font-size: 11px; }
+    table.definitions table tr td {
+      padding: 4px 12px; }
+  table.definitions tr:nth-child(even) {
+    background-color: white; }
+  table.definitions th {
+    color: #339c9e; }
+  table.definitions td {
+    line-height: 18px;
+    vertical-align: top;
+    padding: 14px 8px; }
+    table.definitions td span {
+      color: #4B4F55; }
+    table.definitions td em {
+      font-weight: 700; }
+    table.definitions td .mathjax {
+      font-size: 100%; }
+    table.definitions td:first-of-type {
+      line-height: 20px;
+      width: 1px;
+      white-space: nowrap;
+      padding-right: 12px; }
 
 * {
   margin: 0;
@@ -188,7 +222,8 @@ body, html {
 body {
   font-family: system, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif;
   text-align: center;
-  padding-top: 44px; }
+  padding-top: 44px;
+  color: rgba(16, 24, 34, 0.9); }
 
 header {
   background-color: #101822;
@@ -252,9 +287,16 @@ section:not(.post) {
     font-style: italic;
     text-transform: uppercase;
     letter-spacing: 1px; }
+  section:not(.post) h4 {
+    color: #339c9e;
+    font-size: 16px;
+    margin: 48px 0 24px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block; }
   section:not(.post) p {
-    line-height: 24px;
-    color: rgba(16, 24, 34, 0.9); }
+    line-height: 24px; }
     section:not(.post) p a {
       text-decoration: none;
       color: inherit;
@@ -277,10 +319,14 @@ section.score {
   border: 1px solid #dddfe2;
   margin: 0 20px; }
 
-section div.math {
-  padding: 30px 0 20px 0;
-  border-top: 1px solid #dddfe2;
-  border-bottom: 1px solid #dddfe2; }
+section ul {
+  list-style-type: square;
+  padding-left: 32px; }
+  section ul li {
+    margin-bottom: 12px; }
+
+.mathjax {
+  font-size: 80%; }
 
 .bottom-bar {
   width: 100%;

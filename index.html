@@ -18,7 +18,7 @@
         <div class='welcome'>
           <h3>Introduction</h3>
           <p>Welcome to <em>Polideo</em>, a platform where you can visually see what impact your <b>likes</b>, <b>comments</b>, and <b>shares</b> on Facebook could have on your perceived political ideology.</p>
-          <p>As per <a href=''>our methodology below</a>, <em>Polideo</em> uses a super simple algorithm to score your political ideology based upon your interactions with anonymous Facebook posts. </p>
+          <p>Think of this site as a sort of Facebook algorithm simulation. As per <a href='#methodology'>our methodology below</a>, <em>Polideo</em> uses a super simple algorithm to score your political ideology based upon your interactions with anonymous Facebook posts. </p>
           <p><b>Like</b>, <b>comment</b>, <b>share</b>, or <b>ignore</b> the post below to get started.</p>
         </div>
       </section>
@@ -67,43 +67,112 @@
           <tr>
             <th>Index</th>
             <th>Alignment</th>
-            <th>Engagemnt Value (EV)</th>
-            <th>&sum; EV</th>
-            <th>PV</th>
-            <!-- <th>Post</th>
-            <th>Post Source</th> -->
+            <th>EV</th>
+            <th>AV</th>
+            <th>Post</th>
+            <th>Source</th>
           </tr>
         </table>
       </section>
-      <section>
-        <div class='math'>
-          <p>Using the following mathematical method for numerically classifying political bias&hellip;</p>
-          <br />
+      <section id='methodology'>
+        <h3>Methodology</h3>
+        <p>Wondering about the choices that were made in the creation of this interactive? Well, you've come to the right place. Find below our goals, thought processes, and equations that were formulated through the ideation and iteration of <em>Polideo</em>.</p>
+        <p>Please take a few minutes to read through the table of definitions below, in order to have a better understanding of our mathematicl model and method for calculating ideological alignment.</p>
+        <!-- <h4>Definitions</h4> -->
+        <table class='definitions'>
+          <tr>
+            <th>Variable</th>
+            <th>Definition</th>
+          </tr>
+          <tr>
+            <td><em>a</em><br />Alignment of Post</td>
+            <td>The <b>a</b> of a post is a binary “left” or “right” value depending on the classified political alignment of the page from which it was shared.<sup>1</sup></td>
+          </tr>
+          <tr>
+            <td><em>n</em><br />Number of Posts Seen</td>
+            <td>The <b>n</b> value refers to the total number of posts seen by user, regardless of their Engagement Value.</td>
+          </tr>
+          <tr>
+            <td><em>AV</em><br />Alignment Value</td>
+            <td>A signed float between -1.0 and 1.0 that describes a user’s political alignment based on the formula described further below. Positive values refer to a more conservative user, while negative values refer to a more liberal user. </td>
+          </tr>
+          <tr>
+            <td><em>EV</em><br />Engagement Value</td>
+            <td>The weighted, raw value as mapped to possible engagement actions: like, comment, share, or ignore. Engagement Values (EV) for liberal posts are negatively signed, while EV for conservative posts are positively signed.
+              <table>
+                <tr>
+                  <th>Engagement Action (EA)</th>
+                  <th>Engagement Value (EV)</th>
+                </tr>
+                <tr>
+                  <td>like</td>
+                  <td>&plusmn; 1</td>
+                </tr>
+                <tr>
+                  <td>comment</td>
+                  <td>&plusmn; 3</td>
+                </tr>
+                <tr>
+                  <td>share</td>
+                  <td>&plusmn; 5</td>
+                </tr>
+                <tr>
+                  <td>ignore</td>
+                  <td>0</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td><em>AR</em><br />Alignment Ratio</td>
+            <td>Defined as the ratio of the number of posts seen for some alignment <b>A</b> and the total number of posts seen <b>n</b>:
+              <div class='mathjax'>
+                \[
+                  \begin{equation*}
+                  AR = (\frac{\Sigma_{x=1}^{n} | a_x = A}{n})
+                  \end{equation*}
+                \]
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><em>AE</em><br />Alignment Enthusiasm</td>
+            <td>The product of an Alignment Ratio for some alignment <b>A</b> and the sum of the Engagement Values for posts aligned with <b>A</b>:
+              <div class='mathjax'>
+                \[
+                  \begin{equation*}
+                  AE = AR (\Sigma_{x=1}^{n} PV |a_x = A)
+                  \end{equation*}
+                \]
+              </div>
+            </td>
+          </tr>
+        </table>
+        <p>As visitors to the site engage with articles in various ways, we will attempt to classify their political bias based upon the kinds of articles they react positively to and the strength in which they engage with such posts. Different combinations of liking, commenting, or sharing will yield in an Engagement Value value from 0 to ±9. Thus, we need to find a way to use that value to determine how far “left” (liberal, in the negative direction) or “right” (conservative, in the positive direction) they should move on the political spectrum and assign the user an Alignment Value in the range (-1, 1). A major requirement is that, should they continue reacting to articles of one alignment infinitely, they will never be classified as completely liberal (less than -1) or completely conservative (greater than +1).</p>
+        <h4>Formula Requirements</h4>
+        <ul>
+          <li><p>User’s Alignment Value must remain within the range of (-1, 1).</p></li>
+          <li><p>Engagement Values should be weighted more heavily when they appear in a pattern; if your engagement history tells us that you more frequently and heavily interact with conservative articles, then engaging with another “conservative” article shouldn’t be that surprising and should push you closer to 1 at a lesser rate.</p></li>
+        </ul>
+        <h4>Formula</h4>
+        <p>As combining engagement values without wanting to surpass a limit (-1 or 1) clearly implies an infinite series, the following formula was derived from a P-series consisting of an infinite sum of fractional values:</p>
+        <div class='mathjax'>
           \[
-            f_{PV}(IA, \ EV,\ PV_{n-1}) = PV_{n-1} \ + \
+            f_{AV}(IA, \ EV,\ AV_{n-1}) = AV_{n-1} \ + \
             \begin{cases}
-             (\frac{EV}{5})((1-|PV|)^2) & \text{if } |EV+PV| \geq |PV| \\
-           - (\frac{EV}{5})((1-|PV|)^2)(IA) & \text{if } |EV+PV| < |PV|
+             (\frac{EV}{5})((1-|AV|)^2) & \text{if } |EV+AV| \geq |AV| \\
+           - (\frac{EV}{5})((1-|AV|)^2)(IA) & \text{if } |EV+AV| < |AV|
             \end{cases}
           \]
-          <br />
-          <p>Currently, assuming that the first <em>AE &ne; 0:</p>
-          <br />
-          <div id='fPV-value'>
-            \[
-              f_{PV}(IA, \ EV,\ PV_{n-1}) = N/A
-            \]
-          </div>
         </div>
       </section>
     </main>
-    <!-- <div class='module'>
-    </div> -->
 
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
-    <script type="text/x-mathjax-config">
+    <script type='text/x-mathjax-config'>
       MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        displayAlign: 'left'
       });
     </script>
     <script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'></script>
