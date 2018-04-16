@@ -126,7 +126,7 @@ var App = {
       graph.series[1].addPoint(point(false));
 
       this.insert_row(row);
-      this.update_ideology(ideology);
+      this.update_overview(ideology);
       this.fetch_post();
     }
     else {
@@ -273,8 +273,32 @@ var App = {
         <td>${row.post_source}</td>
       </tr>`);
   },
-  update_ideology: function(ideology) {
-    $('#qualified-ideology').text(ideology);
+  update_overview: function(ideology) {
+    $('.qualified-ideology').text(ideology);
+
+    function f(n) {
+      return n == 1 ? n + ' post' : n + ' posts';
+    }
+
+    let nTot = this.db().count();
+    let lN = this.db({alignment: 'left'}).count();
+    let rN = this.db({alignment: 'right'}).count();
+
+    let likeN = this.db({EV: [-1, 1]}).count();
+    let commentN = this.db({EV: [-3, 3]}).count();
+    let shareN = this.db({EV: [-5, 5]}).count();
+
+    $('.post-count').text(f(nTot));
+    $('.post-count-liberal').text(f(lN));
+    $('.post-count-conservative').text(f(rN));
+
+    $('.post-count-like').text(f(likeN));
+    $('.post-count-comment').text(f(commentN));
+    $('.post-count-share').text(f(shareN));
+    $('.post-count-ignore').text(f(shareN));
+
+    $('.post-percent-conservative').text(((lN / nTot) * 100).toFixed(1) + '%');
+    $('.post-percent-liberal').text(((rN / nTot) * 100).toFixed(1) + '%');
   },
   setup_post: function(post, alignment, topic) {
     var _this = this;
