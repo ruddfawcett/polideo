@@ -245,6 +245,19 @@ header {
       font-weight: 600;
       text-transform: uppercase; }
 
+blockquote {
+  border-left: 3px solid #e5e5e5;
+  padding-left: 12px;
+  margin: 18px 0 20px 18px;
+  color: rgba(16, 24, 34, 0.6); }
+  blockquote p {
+    font-size: 12px !important;
+    line-height: 16px !important; }
+  blockquote span {
+    display: block;
+    margin-top: 12px;
+    font-size: 11px; }
+
 .spectrum {
   height: 3px;
   background-image: linear-gradient(-90deg, #ED1D3C 20%, #4C38F7 80%); }
