@@ -12,7 +12,7 @@ const POINT_VALUES = {
 }
 
 var PMath = {
-  VOLATILITY: -1,
+  VOLATILITY: 1,
   PAV: 0,
   EVMAX: 5,
   AR: function(sumA, totN) {
@@ -32,7 +32,7 @@ var PMath = {
       return (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2);
     }
     else {
-      return this.VOLATILITY * (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2) * IA;
+      return this.VOLATILITY * (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2);
     }
   }
 }
