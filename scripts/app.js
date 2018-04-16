@@ -96,6 +96,8 @@ var App = {
       AV = this.calculate(EV, last_entry.AV);
     }
 
+    let ideology = this.qualify_ideology(AV);
+
     var row = {
       'index': index,
       'alignment': alignment,
@@ -104,7 +106,8 @@ var App = {
       'EV_sum': engagement_value,
       'AV': AV,
       'post': post.attr('data-permalink_url'),
-      'post_source': post.attr('data-from')
+      'post_source': post.attr('data-from'),
+      'qualified_ideology': ideology
     }
 
     if (this.db.insert(row)) {
@@ -123,6 +126,7 @@ var App = {
       graph.series[1].addPoint(point(false));
 
       this.insert_row(row);
+      this.update_ideology(ideology);
       this.fetch_post();
     }
     else {
@@ -147,6 +151,15 @@ var App = {
     let nAV = PMath.fAV(IA, EV, AV);
 
     return nAV;
+  },
+  qualify_ideology: function(AV) {
+    if (Math.abs(AV) < 0.2) return 'centrist';
+    if (AV < -0.7) return 'very liberal';
+    if (AV < -0.4) return 'liberal';
+    if (AV < -0.2) return 'moderately liberal';
+    if (AV <= 0.4) return 'moderately conservative';
+    if (AV <= 0.7) return 'conservative';
+    if (AV <= 1.0) return 'very conservative';
   },
   lookup_page: function(pagename) {
     var P = $.Deferred();
@@ -259,6 +272,9 @@ var App = {
         <td><a href='${row.post}'>Link</a></td>
         <td>${row.post_source}</td>
       </tr>`);
+  },
+  update_ideology: function(ideology) {
+    $('#qualified-ideology').text(ideology);
   },
   setup_post: function(post, alignment, topic) {
     var _this = this;
