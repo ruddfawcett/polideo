@@ -126,6 +126,9 @@ var App = {
     }
 
     if (this.db.insert(row)) {
+      graph.series[0].addPoint(EV);
+      graph.series[1].addPoint(AV);
+
       this.insert_row(row);
       this.fetch_post();
     }

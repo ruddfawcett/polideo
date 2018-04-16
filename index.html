@@ -63,6 +63,7 @@
         </div>
       </section>
       <section class='record'>
+        <div class='graph' id='av-ev-graph'></div>
         <table id='record'>
           <tr>
             <th>Index</th>
@@ -77,7 +78,7 @@
       <section id='methodology'>
         <h3>Methodology</h3>
         <p>Wondering about the choices that were made in the creation of this interactive? Well, you've come to the right place. Find below our goals, thought processes, and equations that were formulated through the ideation and iteration of <em>Polideo</em>.</p>
-        <p>Please take a few minutes to read through the table of definitions below, in order to have a better understanding of our mathematicl model and method for calculating ideological alignment.</p>
+        <p>But first, please take a few minutes to read through the table of definitions below, in order to have a better understanding of our mathematicl model and method for calculating ideological alignment.</p>
         <!-- <h4>Definitions</h4> -->
         <table class='definitions'>
           <tr>
@@ -168,6 +169,7 @@
       </section>
     </main>
 
+    <script src='https://code.highcharts.com/highcharts.js'></script>
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
     <script type='text/x-mathjax-config'>
       MathJax.Hub.Config({
@@ -177,6 +179,7 @@
     </script>
     <script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     <script src='scripts/taffy.min.js'></script>
+    <script src='scripts/graphs.js'></script>
     <script src='scripts/app.js'></script>
     <script type='text/javascript'>
       $(document).ready(function() {

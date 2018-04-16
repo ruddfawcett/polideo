@@ -27,6 +27,7 @@ header {
   width: 100%;
   box-sizing: border-box;
   position: fixed;
+  z-index: 9999;
   top: 0;
 
   nav {
@@ -140,9 +141,12 @@ section.post {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
-section.score {
-  border: 1px solid #dddfe2;
-  margin: 0 20px;
+section.record {
+  .graph {
+    z-index: 10;
+    height: 300px;
+    margin-bottom: 20px;
+  }
 }
 
 section ul {
