@@ -126,8 +126,18 @@ var App = {
     }
 
     if (this.db.insert(row)) {
-      graph.series[0].addPoint(EV);
-      graph.series[1].addPoint(AV);
+      graph.series[0].addPoint({
+        x: this.db().count(),
+        y: EV,
+        alignment: alignment,
+        post_source: post.attr('data-from')
+      });
+      graph.series[1].addPoint({
+        x: this.db().count(),
+        y: AV,
+        alignment: alignment,
+        post_source: post.attr('data-from')
+      });
 
       this.insert_row(row);
       this.fetch_post();
@@ -218,8 +228,26 @@ var App = {
     });
   },
   insert_row: function(row) {
+    let row_count = this.db().count();
+
+    if (row_count > 10) {
+      if ($('#record tr.inserted-row.overflow').length != 1) {
+        $('#record tr:first').after(`
+          <tr class='inserted-row overflow'>
+            <td>&hellip;</td>
+            <td>&hellip;</td>
+            <td>&hellip;</td>
+            <td>&hellip;</td>
+            <td>&hellip;</td>
+            <td>&hellip;</td>
+          </tr>`);
+      }
+
+      $('#record tr.inserted-row')[1].remove();
+    }
+
     $('#record tr:last').after(`
-      <tr>
+      <tr class='inserted-row'>
         <td>${row.index}</td>
         <td>${row.alignment}</td>
         <td>${row.EV}</td>

@@ -141,11 +141,35 @@ section.post {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
-section.record {
-  .graph {
-    z-index: 10;
-    height: 300px;
-    margin-bottom: 20px;
+section.interactive {
+  ul.tabs-headers {
+    list-style: none;
+    padding: 0;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 24px;
+
+    li {
+      margin-right: 20px;
+      display: inline-table;
+      margin-bottom: -1px;
+      border: 1px solid #e5e5e5;
+      outline: none;
+
+      &.ui-tabs-active {
+        background-color: white;
+        border-bottom: 1px solid white;
+      }
+
+      a {
+        text-decoration: none;
+        color: rgba(#101822, 0.9);
+        text-transform: uppercase;
+        font-weight: 700;
+        display: block;
+        padding: 8px 12px;
+        outline: none;
+      }
+    }
   }
 }
 
@@ -162,10 +186,9 @@ section ul {
   font-size: 80%;
 }
 
-.bottom-bar {
-  width: 100%;
-  height: 20px;
-  bottom: 0;
-  position: fixed;
-  z-index: 999;
+.graph {
+  z-index: 10;
+  height: 350px;
+  margin-bottom: 32px;
+  margin-top: -18px;
 }

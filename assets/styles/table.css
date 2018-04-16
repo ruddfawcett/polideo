@@ -8,7 +8,7 @@ table {
   table tr {
     border-bottom: 1px solid #e5e5e5; }
     table tr:nth-child(even) {
-      background-color: rgba(240, 240, 240, 0.5); }
+      background-color: rgba(240, 240, 240, 0.3); }
     table tr:last-child {
       border-bottom: none; }
     table tr > th {
@@ -18,7 +18,8 @@ table {
       font-weight: 700;
       font-size: 12px;
       text-align: left;
-      padding: 0 0 4px 0; }
+      padding: 0 0 4px 0;
+      color: #339c9e; }
     table tr td {
       padding: 8px 0; }
     table tr td, table tr th {
@@ -39,8 +40,6 @@ table.definitions {
       padding: 4px 12px; }
   table.definitions tr:nth-child(even) {
     background-color: white; }
-  table.definitions th {
-    color: #339c9e; }
   table.definitions td {
     line-height: 18px;
     vertical-align: top;

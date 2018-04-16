@@ -10,7 +10,7 @@ table {
     border-bottom: 1px solid #e5e5e5;
 
     &:nth-child(even) {
-      background-color: rgba(#F0F0F0, 0.5);
+      background-color: rgba(#F0F0F0, 0.3);
     }
 
     &:last-child {
@@ -27,6 +27,7 @@ table {
       font-size: 12px;
       text-align: left;
       padding: 0 0 4px 0;
+      color: #339c9e;
     }
 
     td {
@@ -67,10 +68,6 @@ table.definitions {
     &:nth-child(even) {
       background-color: white;
     }
-  }
-
-  th {
-    color: #339c9e;
   }
 
   td {

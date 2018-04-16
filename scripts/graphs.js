@@ -9,6 +9,25 @@ var graph = Highcharts.chart('av-ev-graph', {
   title: {
     text: null
   },
+  tooltip: {
+    crosshairs: {
+      color: '#e5e5e5',
+      dashStyle: 'solid'
+    },
+    backgroundColor: 'white',
+    borderRadius: 0,
+    borderWidth: 0,
+    shared: true,
+    formatter: function() {
+      console.log(App);
+      return `<div>
+                <b>Post: </b>${this.x}<br />
+                <b>Alignment: </b>${this.points[0].point.alignment}<br />
+                <b>Engagement Value (EV): </b>${this.points[0].y}<br />
+                <b>Alignment Value (AV): </b>${this.points[1].y}<br />
+              </div>`;
+    }
+  },
   xAxis: {
     visible: false,
     gridLineColor: '#e5e5e5'
@@ -41,17 +60,22 @@ var graph = Highcharts.chart('av-ev-graph', {
       }
     }
   },
+  legend: {
+    verticalAlign: 'top',
+    reversed: true,
+    symbolRadius: 0,
+    margin: 18
+  },
   series: [{
-      name: 'EV',
+      name: 'Engagement Value (EV)',
       type: 'column',
       color: 'rgba(51, 156, 158, 0.5)',
-      legendIndex: 1,
       data: [],
       yAxis: 1
     }, {
-      name: 'AV',
+      name: 'Alignment Value (AV)',
+      type: 'spline',
       color: 'rgba(16, 24, 34, 0.9)',
-      legendIndex: 0,
       data: []
   }]
 });

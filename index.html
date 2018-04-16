@@ -62,24 +62,40 @@
           </div>
         </div>
       </section>
-      <section class='record'>
-        <div class='graph' id='av-ev-graph'></div>
-        <table id='record'>
-          <tr>
-            <th>Index</th>
-            <th>Alignment</th>
-            <th>EV</th>
-            <th>AV</th>
-            <th>Post</th>
-            <th>Source</th>
-          </tr>
-        </table>
+      <section class='interactive'>
+        <div class='tabs-container' id='tabs'>
+          <ul class='tabs-headers'>
+            <li><a href='#tabs-1'>Overview</a></li>
+            <li><a href='#tabs-2'>Alignment Graph</a></li>
+            <li><a href='#tabs-3'>XYZ</a></li>
+          </ul>
+          <div id='tabs-1'>
+
+          </div>
+          <div id='tabs-2'>
+            <div class='graph' id='av-ev-graph'></div>
+            <table id='record'>
+              <tr>
+                <th>Post</th>
+                <th>Alignment</th>
+                <th>EV</th>
+                <th>AV</th>
+                <th>Post</th>
+                <th>Source</th>
+              </tr>
+            </table>
+          </div>
+          <div id='tabs-3'>
+            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+            <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+          </div>
+        </div>
+
       </section>
       <section id='methodology'>
         <h3>Methodology</h3>
         <p>Wondering about the choices that were made in the creation of this interactive? Well, you've come to the right place. Find below our goals, thought processes, and equations that were formulated through the ideation and iteration of <em>Polideo</em>.</p>
         <p>But first, please take a few minutes to read through the table of definitions below, in order to have a better understanding of our mathematicl model and method for calculating ideological alignment.</p>
-        <!-- <h4>Definitions</h4> -->
         <table class='definitions'>
           <tr>
             <th>Variable</th>
@@ -169,20 +185,23 @@
       </section>
     </main>
 
-    <script src='https://code.highcharts.com/highcharts.js'></script>
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
+    <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+    <script src='https://code.highcharts.com/highcharts.js'></script>
+    <script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
     <script type='text/x-mathjax-config'>
       MathJax.Hub.Config({
         tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
         displayAlign: 'left'
       });
     </script>
-    <script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     <script src='scripts/taffy.min.js'></script>
     <script src='scripts/graphs.js'></script>
     <script src='scripts/app.js'></script>
     <script type='text/javascript'>
       $(document).ready(function() {
+        $('#tabs').tabs();
         App.start();
       });
     </script>
