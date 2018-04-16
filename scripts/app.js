@@ -1,5 +1,5 @@
-const EVP_ID = '503600090034639'
-const ACCESS_TOKEN = ''
+const EVP_ID = '503600090034639';
+const ACCESS_TOKEN = '';
 
 const TESTING_MATH = true;
 
@@ -163,7 +163,7 @@ var App = {
   },
   lookup_page: function(pagename) {
     var P = $.Deferred();
-    FB.EVi(`/${pagename}`, {
+    FB.api(`/${pagename}`, {
       access_token: ACCESS_TOKEN
     }, function(response) {
       if (!response) {
@@ -179,7 +179,7 @@ var App = {
   },
   lookup_post: function(page_id, post_id) {
     var _this = this;
-    FB.EVi(`/${page_id}_${post_id}`, {
+    FB.api(`/${page_id}_${post_id}`, {
       access_token: ACCESS_TOKEN,
       fields: 'attachments{media,description,title, url},message,full_picture,created_time,status_type'
     }, function(response) {
@@ -331,7 +331,7 @@ var App = {
     let topic_idx = Math.floor(Math.random() * POST_TOPICS.length);
     let topic = POST_TOPICS[topic_idx];
     let page_num = Math.floor(Math.random() * 10) + 1;
-    let page_url = `http://grEVhics.wsj.com/blue-feed-red-feed/data.php?page=${page_num}&keyword=${topic}`;
+    let page_url = `http://graphics.wsj.com/blue-feed-red-feed/data.php?page=${page_num}&keyword=${topic}`;
     let origin_workaround_url = `http://www.whateverorigin.org/get?url=${encodeURIComponent(page_url)}&callback=?`;
 
     $.getJSON(origin_workaround_url, function(data) {
