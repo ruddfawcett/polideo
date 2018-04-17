@@ -86,7 +86,6 @@
             </table>
           </div>
         </div>
-
       </section>
       <section id='why-build-this'>
         <h3>Why build this?</h3>
@@ -210,7 +209,7 @@
               <div class='mathjax'>
                 \[
                   \begin{equation*}
-                  AE = AR (\Sigma_{x=1}^{n} PV |a_x = A)
+                  AE = AR (\Sigma_{x=1}^{n} EV |a_x = A)
                   \end{equation*}
                 \]
               </div>
@@ -218,7 +217,6 @@
           </tr>
         </table>
         <p>As visitors to the site engage with articles in various ways, we will attempt to classify their political bias based upon the kinds of articles they react positively to and the strength in which they engage with such posts. Different combinations of liking, commenting, or sharing will yield in an Engagement Value value from 0 to ±9. Thus, we need to find a way to use that value to determine how far “left” (liberal, in the negative direction) or “right” (conservative, in the positive direction) they should move on the political spectrum and assign the user an Alignment Value in the range (-1, 1). A major requirement is that, should they continue reacting to articles of one alignment infinitely, they will never be classified as completely liberal (less than -1) or completely conservative (greater than +1).</p>
-        <h4>Posts</h4>
         <h4>Formula Requirements</h4>
         <ul>
           <li><p>User’s Alignment Value must remain within the range of (-1, 1).</p></li>
