@@ -68,7 +68,7 @@
           </ul>
           <div id='tabs-1'>
             <p>Over the course of your time on <em>Polideo</em>, you've seen <b class='post-count'>0 posts</b>. You've liked <b class='post-count-like'>0 posts</b>, commented on <b class='post-count-comment'>0 posts</b>, shared <b class='post-count-share'>0 posts</b>, and ignored <b class='post-count-ignore'>0 posts</b>.</p>
-            <p>Of the <b class='post-count'>0 posts</b> you've seen, <b class='post-count-liberal'>0 posts</b> &mdash; <b class='post-percent-liberal'>0%</b> &mdash; have been from pages that have more liberal followings, and <b class='post-count-conservative'>0 posts</b> &mdash; <b class='post-percent-conservative'>0%</b> &mdash; have been from pages that have more conservative followings.</p>
+            <p>Of the <b class='post-count'>0 posts</b> you've seen, <b class='post-count-liberal left'>0 posts</b> &mdash; <b class='post-percent-liberal left'>0%</b> &mdash; have been from pages that have more liberal followings, and <b class='post-count-conservative right'>0 posts</b> &mdash; <b class='post-percent-conservative right'>0%</b> &mdash; have been from pages that have more conservative followings.</p>
             <p>Looking at this data, we've calculated that you are <b class='qualified-ideology'>unknown</b>.</p>
           </div>
           <div id='tabs-2'>
@@ -77,6 +77,7 @@
               <tr>
                 <th>Post</th>
                 <th>Alignment</th>
+                <th>Topic</th>
                 <th>EV</th>
                 <th>AV</th>
                 <th>Post</th>
@@ -110,7 +111,7 @@
       </section>
       <section id='methodology'>
         <h3>Methodology</h3>
-        <p>Wondering about the choices that were made in the creation of this interactive? Well, you've come to the right place. Find below our goals, thought processes, and equations that were formulated through the ideation and iteration of <em>Polideo</em>.</p>
+        <p>Find below our goals, thought processes, and equations that were formulated through the ideation and iteration of <em>Polideo</em>.</p>
         <p>But first, please take a few minutes to read through the table of definitions below, in order to have a better understanding of our mathematicl model and method for calculating ideological alignment.</p>
         <table class='definitions'>
           <tr>
@@ -217,6 +218,7 @@
           </tr>
         </table>
         <p>As visitors to the site engage with articles in various ways, we will attempt to classify their political bias based upon the kinds of articles they react positively to and the strength in which they engage with such posts. Different combinations of liking, commenting, or sharing will yield in an Engagement Value value from 0 to ±9. Thus, we need to find a way to use that value to determine how far “left” (liberal, in the negative direction) or “right” (conservative, in the positive direction) they should move on the political spectrum and assign the user an Alignment Value in the range (-1, 1). A major requirement is that, should they continue reacting to articles of one alignment infinitely, they will never be classified as completely liberal (less than -1) or completely conservative (greater than +1).</p>
+        <h4>Posts</h4>
         <h4>Formula Requirements</h4>
         <ul>
           <li><p>User’s Alignment Value must remain within the range of (-1, 1).</p></li>
@@ -226,13 +228,19 @@
         <p>As combining engagement values without wanting to surpass a limit (-1 or 1) clearly implies an infinite series, the following formula was derived from a P-series consisting of an infinite sum of fractional values:</p>
         <div class='mathjax'>
           \[
-            f_{AV}(IA, \ EV,\ AV_{n-1}) = AV_{n-1} \ + \
+            f_{AV}(EV,\ AV_{n-1}) = AV_{n-1} \ + \
             \begin{cases}
              (\frac{EV}{5})((1-|AV|)^2) & \text{if } |EV+AV| \geq |AV| \\
            - (\frac{EV}{5})((1-|AV|)^2) & \text{if } |EV+AV| < |AV|
             \end{cases}
           \]
         </div>
+      </section>
+      <section class='attributions'>
+        <h3>Citations</h3>
+        <ol>
+          <li>Incoming&hellip;</li>
+        </ol>
       </section>
     </main>
 

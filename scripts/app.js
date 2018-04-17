@@ -56,6 +56,10 @@ var App = {
         $(this).text($(this).attr('data-default'));
     });
 
+    if (TESTING_MATH) {
+      return _this.fetch_post();
+    }
+
     $.ajaxSetup({ cache: true });
     $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
       FB.init({
@@ -326,6 +330,7 @@ var App = {
       $('div.post').removeClass('left');
       $('div.post').removeClass('right');
       $('div.post').addClass(alignment);
+      $('#post-body').html('In testing mode, no calls to the Facebook API are made. <br /><br />A post with a blue background color is &ldquo;left,&rdquo; and one with the red background color is &ldquo;right.&rdquo;');
       return;
     }
 

@@ -32,6 +32,13 @@ table {
 
     td {
       padding: 8px 0;
+
+      sup {
+        vertical-align: top;
+        position: relative;
+        top: -0.5em;
+        font-size: 10px;
+      }
     }
 
     td, th {
