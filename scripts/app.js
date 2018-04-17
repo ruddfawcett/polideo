@@ -287,6 +287,7 @@ var App = {
     let likeN = this.db({EV: [-1, 1]}).count();
     let commentN = this.db({EV: [-3, 3]}).count();
     let shareN = this.db({EV: [-5, 5]}).count();
+    let ignoreN = this.db({EV: 0}).count();
 
     $('.post-count').text(f(nTot));
     $('.post-count-liberal').text(f(lN));
@@ -295,10 +296,10 @@ var App = {
     $('.post-count-like').text(f(likeN));
     $('.post-count-comment').text(f(commentN));
     $('.post-count-share').text(f(shareN));
-    $('.post-count-ignore').text(f(shareN));
+    $('.post-count-ignore').text(f(ignoreN));
 
-    $('.post-percent-conservative').text(((lN / nTot) * 100).toFixed(1) + '%');
-    $('.post-percent-liberal').text(((rN / nTot) * 100).toFixed(1) + '%');
+    $('.post-percent-conservative').text(((rN / nTot) * 100).toFixed(1) + '%');
+    $('.post-percent-liberal').text(((lN / nTot) * 100).toFixed(1) + '%');
   },
   setup_post: function(post, alignment, topic) {
     var _this = this;
