@@ -9,13 +9,13 @@
   <body>
     <header>
       <nav>
-        <h3>Polideo</h3>
+        <h2>Polideo</h2>
       </nav>
       <div class='spectrum'></div>
     </header>
     <main>
       <section id='intro'>
-        <h3>Introduction</h3>
+        <h2>Introduction</h2>
         <p>Welcome to <em>Polideo</em>, a platform where you can visually see what impact your <b>likes</b>, <b>comments</b>, and <b>shares</b> on Facebook could have on your perceived political ideology.</p>
         <p>Think of this site as a sort of Facebook algorithm simulation. As per <a href='#methodology'>our methodology below</a>, <em>Polideo</em> uses a simple algorithm to score your political ideology based upon your interactions with anonymous Facebook posts. </p>
         <p><b>Like</b>, <b>comment</b>, <b>share</b>, or <b>ignore</b> the post below to get started.</p>
@@ -67,9 +67,53 @@
             <li><a href='#tabs-2'>Alignment Graph</a></li>
           </ul>
           <div id='tabs-1'>
-            <p>Over the course of your time on <em>Polideo</em>, you've seen <b class='post-count'>0 posts</b>. You've liked <b class='post-count-like'>0 posts</b>, commented on <b class='post-count-comment'>0 posts</b>, shared <b class='post-count-share'>0 posts</b>, and ignored <b class='post-count-ignore'>0 posts</b>.</p>
-            <p>Of the <b class='post-count'>0 posts</b> you've seen, <b class='post-count-liberal left'>0 posts</b> &mdash; <b class='post-percent-liberal left'>0%</b> &mdash; have been from pages that have more liberal followings, and <b class='post-count-conservative right'>0 posts</b> &mdash; <b class='post-percent-conservative right'>0%</b> &mdash; have been from pages that have more conservative followings.</p>
-            <p>Looking at this data, we've calculated that you are <b class='qualified-ideology'>unknown</b>.</p>
+            <p>Below is an overview of the types and quanitites of posts that you've engaged with and seen above. <em>NB: These presented data below are only a snippet of the numbers that go into the <a href='#av-formula'>formula</a> which calculates your perceived political ideology.</em></p>
+            <div class='numbers-container'>
+              <h3>You've Seen</h3>
+              <div class='by-the-numbers col-3'>
+                <div class='number'>
+                  <h1 class='post-count'>0</h1>
+                  <h5>total posts</h5>
+                </div>
+                <div class='number'>
+                  <h1 class='post-count-liberal left'>0</h1>
+                  <h5>left posts</h5>
+                </div>
+                <div class='number'>
+                  <h1 class='post-count-conservative right'>0</h1>
+                  <h5>right posts</h5>
+                </div>
+              </div>
+            </div>
+            <p>Of the <b class='post-count'>0 posts</b> you've seen, <b class='post-percent-liberal left'>0%</b> have been from pages that have more liberal followings, and <b class='post-percent-conservative right'>0%</b> have been from pages that have more conservative followings.</p>
+            <div class='numbers-container'>
+              <h3>Your Engagement</h3>
+              <div class='by-the-numbers col-4'>
+                <div class='number'>
+                  <h1 class='post-count-like'>0</h1>
+                  <h5>posts likes</h5>
+                </div>
+                <div class='number'>
+                  <h1 class='post-count-comment'>0</h1>
+                  <h5>post comments</h5>
+                </div>
+                <div class='number'>
+                  <h1 class='post-count-share'>0</h1>
+                  <h5>posts shares</h5>
+                </div>
+                <div class='number'>
+                  <h1 class='post-count-ignore'>0</h1>
+                  <h5>posts ignores</h5>
+                </div>
+              </div>
+            </div>
+            <p>By calculating your <b class='black'>Alignment Ratio (AR)</b> and your subsequent <b class='black'>Alignment Enthusiasm (AE)</b>, we've used our <a href='#av-formula'>formula</a> to calculate an <b class='black'>Alignment Value (AV)</b> of <b class='av-value'>0.0</b>. By using our defined qualified ideologies in the table of definitions below, this AV value corresponds to a political ideology of <b class='qualified-ideology'>centrist</b>.</p>
+            <div class='numbers-container'>
+              <h3>Your Political Ideology</h3>
+              <div class='by-the-numbers'>
+                <h1 class='ideology qualified-ideology'>centrist</h1>
+              </div>
+            </div>
           </div>
           <div id='tabs-2'>
             <div class='graph' id='av-ev-graph'></div>
@@ -88,7 +132,7 @@
         </div>
       </section>
       <section id='why-build-this'>
-        <h3>Why build this?</h3>
+        <h2>Why build this?</h2>
         <p>It’s no secret that Facebook <a href='http://time.com/money/5212501/how-facebook-tracks-me/'>knows a lot about you</a>: some users share their entire lives on the social media platform, from where they are going to lunch, to what they’re currently thinking. Everything you do on the site is tracked, analyzed, and categorized in order to build a highly intricate model of your digital existence. And the “why?” is no secret either — in 2017 Facebook made almost <a href='https://investor.fb.com/investor-news/press-release-details/2018/Facebook-Reports-Fourth-Quarter-and-Full-Year-2017-Results/default.aspx'>98.3 percent of its revenue from digital advertisements</a>. Facebook is a great platform to stay connected with others, yes, but it’s also the perfect platform for marketers to promote highly targeted advertisements in order to maximize reach, brand awareness, and click-through-rates. Facebook is a classic example of “if you’re not paying for the product, you are the product.”</p>
         <p>Facebook is rather transparent, actually, in disclosing what <a href='https://www.facebook.com/ads/preferences'>“influences the ads you see and [how you can] take control over your ad experience,”</a> all of which are available on your ad preferences page. There is one particular metric, however, that is particularly intriguing: your “US Politics.” Discourse around politics and, more specifically, your political ideology used to be rather culturally taboo; discretion around your political leanings was “normal” if not understood. While in recent years, this has become less of a reality, there are many Americans who elect to consciously keep their voting and political views private.</p>
         <p>So how does Facebook know about your “US Politics”? Good question. A 2016 New York Times article entitled “Liberal, Moderate or Conservative? See How Facebook Labels You” reports the following:</p>
@@ -109,7 +153,7 @@
         </ul>
       </section>
       <section id='methodology'>
-        <h3>Methodology</h3>
+        <h2>Methodology</h2>
         <p>Find below our goals, thought processes, and equations that were formulated through the ideation and iteration of <em>Polideo</em>.</p>
         <p>But first, please take a few minutes to read through the table of definitions below, in order to have a better understanding of our mathematicl model and method for calculating ideological alignment.</p>
         <table class='definitions'>
@@ -235,7 +279,7 @@
         </div>
       </section>
       <section class='attributions'>
-        <h3>Citations</h3>
+        <h2>Citations</h2>
         <ol>
           <li>Incoming&hellip;</li>
         </ol>

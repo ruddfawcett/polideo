@@ -281,7 +281,7 @@ var App = {
     $('.qualified-ideology').text(ideology);
 
     function f(n) {
-      return n == 1 ? n + ' post' : n + ' posts';
+      return n;
     }
 
     let nTot = this.db().count();

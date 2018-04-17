@@ -243,7 +243,7 @@ header {
     height: 44px;
     color: rgba(255, 255, 255, 0.5);
     text-align: center; }
-    header nav h3 {
+    header nav h2 {
       line-height: 44px;
       font-size: 16px;
       letter-spacing: 1px;
@@ -273,6 +273,9 @@ blockquote {
 .left {
   color: #4e80c6 !important; }
 
+.black {
+  color: rgba(16, 24, 34, 0.9) !important; }
+
 main {
   display: inline-block;
   text-align: left;
@@ -291,7 +294,7 @@ main {
     line-height: 48px;
     margin-bottom: 20px;
     border-bottom: 1px solid black; }
-  .content .container h3 {
+  .content .container h2 {
     line-height: 31px;
     font-size: 20px;
     color: #949494;
@@ -308,7 +311,7 @@ section:not(.post) {
   padding: 50px 20px; }
   section:not(.post):last-child {
     margin-bottom: 48px; }
-  section:not(.post) h3 {
+  section:not(.post) h2 {
     font-size: 24px;
     font-weight: 800;
     padding-bottom: 20px;
@@ -364,7 +367,7 @@ section.interactive ul.tabs-headers {
       padding: 8px 12px;
       outline: none; }
 
-section.attributions h3 {
+section.attributions h2 {
   font-size: 16px;
   letter-spacing: 0.4px;
   font-style: normal;
@@ -381,6 +384,55 @@ section ul, section ol {
 
 section ul {
   list-style-type: square; }
+
+.numbers-container {
+  margin: 16px 0 16px 0; }
+  .numbers-container h3 {
+    text-align: center;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 12px;
+    top: 10px;
+    display: table;
+    padding: 0 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    position: relative;
+    background-color: white;
+    z-index: 999; }
+
+.by-the-numbers {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 22px; }
+  .by-the-numbers h1.ideology {
+    text-align: center;
+    margin-top: 24px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-size: 32px;
+    font-style: italic; }
+  .by-the-numbers.col-3 .number {
+    width: 33%; }
+  .by-the-numbers.col-4 .number {
+    width: 25%; }
+  .by-the-numbers .number {
+    box-sizing: border-box;
+    margin: 12px 0;
+    text-align: center;
+    padding: 0 0 8px 0;
+    display: inline-table;
+    float: left; }
+    .by-the-numbers .number h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+      margin-bottom: 8px;
+      color: rgba(16, 24, 34, 0.9); }
+    .by-the-numbers .number h5 {
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(16, 24, 34, 0.6); }
 
 .mathjax {
   font-size: 90%;
