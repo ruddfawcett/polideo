@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>very-dissatisfied</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-10.000000, -10.000000)">
+            <g id="very-dissatisfied" transform="translate(10.000000, 10.000000)">
+                <circle id="head" stroke="#62676F" stroke-width="1.5" cx="10" cy="10" r="9.25"></circle>
+                <path d="M6,15.5 C7.33333333,14.5 8.66666667,14 10,14 C11.3333333,14 12.6666667,14.5 14,15.5" id="mouth" stroke="#62676F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <g id="eyes" transform="translate(6.000000, 6.000000)" fill="#62676F">
+                    <circle id="right" cx="7" cy="1" r="1"></circle>
+                    <circle id="left" cx="1" cy="1" r="1"></circle>
+                </g>
+                <g id="brows" transform="translate(6.000000, 5.000000)" stroke="#62676F" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6.5,2 C6.83248442,1 7.33248442,0.5 8,0.5" id="right"></path>
+                    <path d="M0,0.5 C0.667515581,0.5 1.16751558,1 1.5,2" id="left"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

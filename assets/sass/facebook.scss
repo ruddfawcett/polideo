@@ -10,11 +10,11 @@ div.post {
   font-family: system, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif;
 
   &.left {
-    background-color: rgba(blue, 0.05);
+    background-color: rgba(#4e80c6, 0.3);
   }
 
   &.right {
-    background-color: rgba(red, 0.05);
+    background-color: rgba(#c64e4e, 0.3);
   }
 }
 
@@ -175,32 +175,37 @@ div.post .actions {
 }
 
 .icon {
-  background-image: url('../images/actions-edited.png');
+  background-image: url('../images/likert-emotions/sheet.svg');
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 2px;
+  margin-right: 3px;
 
-  &.like {
-    background-size: 21px 1121px;
-    background-position: 0 -358px;
+  &.very-dissatisfied {
+    background-size: 160px 40px;
+    background-position: -10px -10px;
   }
 
-  &.comment {
-    background-size: 21px 1121px;
-    background-position: 0 -282px;
+  &.dissatisfied {
+    background-size: 160px 40px;
+    background-position: -40px -10px;
   }
 
-  &.share {
-    background-size: 21px 1121px;
-    background-position: 0 -529px;
+  &.neutral {
+    background-size: 160px 40px;
+    background-position: -70px -10px;
   }
 
-  &.ignore {
-    background-size: 21px 1121px;
-    background-position: 0 -42px;
+  &.satisfied {
+    background-size: 160px 40px;
+    background-position: -100px -10px;
+  }
+
+  &.very-satisfied {
+    background-size: 160px 40px;
+    background-position: -130px -10px;
   }
 }
 

@@ -307,9 +307,15 @@ section ul {
   }
 }
 
+.MathJax:focus, .mjx-chtml:focus, .MathJax_SVG:focus {
+   outline: none;
+}
+
 .mathjax {
-  font-size: 90%;
+  font-size: 100%;
   margin-top: 24px;
+  width: 100%;
+  height: auto;
 }
 
 .graph {

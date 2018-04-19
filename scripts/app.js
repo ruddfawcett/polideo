@@ -1,38 +1,39 @@
-const EVP_ID = '503600090034639';
-const ACCESS_TOKEN = '';
+const APP_ID = '503600090034639';
+const ACCESS_TOKEN = 'EAACEdEose0cBAAneK7Trh6ZCMJMDPHEBF9RNgdAMwAqLQ49F7Qd2FKOLjBM8elC7mMXzRzbQG5763ZAY7uNCUNYYVCFuZCKCg7EbYJHUroXbCZC2GduYzksRh368wyziBpKGVXYdZALFfivUZABzsowaQkfp8TudJrKyCJzXeBYymNwXNvDFVQzIZCZC9IvSjNiZAiZBGEP0DYi2iQKP5Nxs92';
 
 const TESTING_MATH = true;
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 const POINT_VALUES = {
-  like: 1,
-  comment: 3,
-  share: 5,
-  ignore: 0
+  vds: -2,
+  ds: -1,
+  n: 0,
+  s: 1,
+  vs: 2
 }
 
 var PMath = {
   VOLATILITY: 1,
   PAV: 0,
-  EVMAX: 5,
+  RVMAX: 4,
   AR: function(sumA, totN) {
     return sumA / totN;
   },
-  AE: function(AR, sumEVV) {
-    return AR * sumEVV;
+  AE: function(AR, sumRVV) {
+    return AR * sumRVV;
   },
   IA: function(AEm, AEM) {
     return Math.abs(AEm) / Math.abs(AEM);
   },
-  fAV: function(IA, EV, AV) {
-    return AV + this.fDAV(IA, EV, AV);
+  fAV: function(IA, RV, AV) {
+    return AV + this.fDAV(IA, RV, AV);
   },
-  fDAV: function(IA, EV, AV) {
-    if (Math.abs(EV + AV) >= Math.abs(AV)) {
-      return (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2);
+  fDAV: function(IA, RV, AV) {
+    if (Math.abs(RV + AV) >= Math.abs(AV)) {
+      return (RV / this.RVMAX) * Math.pow((1 - Math.abs(AV)), 2);
     }
     else {
-      return this.VOLATILITY * (EV / this.EVMAX) * Math.pow((1 - Math.abs(AV)), 2);
+      return this.VOLATILITY * (RV / this.RVMAX) * Math.pow((1 - Math.abs(AV)), 2);
     }
   }
 }
@@ -63,7 +64,7 @@ var App = {
     $.ajaxSetup({ cache: true });
     $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
       FB.init({
-        EVpId: EVP_ID,
+        appId: APP_ID,
         version: 'v2.12'
       });
 
@@ -84,20 +85,20 @@ var App = {
     let topic = post.attr('data-topic');
 
     let sign = alignment == 'left' ? -1 : 1;
-    let EV = sign * POINT_VALUES[action_tag];
+    let RV = sign * POINT_VALUES[action_tag];
 
     let index = 1;
-    let engagement_value = EV;
+    let engagement_value = RV;
 
     let last_entry = this.db().last();
 
     // Initial P value as a raio of your engagement value * a constant.
-    var AV = EV * 0.05;
+    var AV = RV * 0.05;
 
     if (last_entry) {
       index = last_entry.index + 1;
-      engagement_value = last_entry.EV_sum + EV;
-      AV = this.calculate(EV, last_entry.AV);
+      engagement_value = last_entry.RV_sum + RV;
+      AV = this.calculate(RV, last_entry.AV);
     }
 
     let ideology = this.qualify_ideology(AV);
@@ -106,8 +107,8 @@ var App = {
       'index': index,
       'alignment': alignment,
       'topic': topic,
-      'EV': EV,
-      'EV_sum': engagement_value,
+      'RV': RV,
+      'RV_sum': engagement_value,
       'AV': AV,
       'post': post.attr('data-permalink_url'),
       'post_source': post.attr('data-from'),
@@ -116,10 +117,10 @@ var App = {
 
     if (this.db.insert(row)) {
       var _this = this;
-      function point(isEV) {
+      function point(isRV) {
         return {
           x: _this.db().count(),
-          y: isEV ? EV : AV,
+          y: isRV ? RV : AV,
           alignment: alignment,
           topic: topic,
           post_source: post.attr('data-from')
@@ -137,22 +138,22 @@ var App = {
       this.should_insert = true;
     }
   },
-  calculate: function(EV, AV) {
+  calculate: function(RV, AV) {
     let totN = this.db().count();
     let lN = this.db({alignment: 'left'}).count();
     let rN = this.db({alignment: 'right'}).count();
 
-    let lsumEV = this.db({alignment: 'left'}).sum('EV');
-    let rsumEV = this.db({alignment: 'right'}).sum('EV');
+    let lsumRV = this.db({alignment: 'left'}).sum('RV');
+    let rsumRV = this.db({alignment: 'right'}).sum('RV');
 
     var lAR = PMath.AR(lN, totN);
     var rAR = PMath.AR(rN, totN);
 
-    var lAE = PMath.AE(lAR, lsumEV);
-    var rAE = PMath.AE(lAE, rsumEV);
+    var lAE = PMath.AE(lAR, lsumRV);
+    var rAE = PMath.AE(lAE, rsumRV);
 
     let IA = (Math.abs(lAE) <= Math.abs(rAE)) ? PMath.IA(lAE, rAE) : PMath.IA(rAE, lAE);
-    let nAV = PMath.fAV(IA, EV, AV);
+    let nAV = PMath.fAV(IA, RV, AV);
 
     return nAV;
   },
@@ -211,7 +212,7 @@ var App = {
             $(`<div class='media' id='post-attachment'>
                   <div class='image' id='post-full_picture'></div>
                   <div class='deck'>
-                    <h1 id='post-attachment-title'>Mei elitr EVeriri rationibus id nulla expetenda pro ad</h1>
+                    <h1 id='post-attachment-title'>Mei elitr RVeriri rationibus id nulla expetenda pro ad</h1>
                     <p id='post-attachment-description'>Ea his partem erroribus, est ea labore utroque delectus, sea meliore platonem ut. Ex odio diam voluptatibus sea, doming mollis civibus ea nec.</p>
                     <h6 class='reveal-text' id='post-attachment-source' data-default='website.com'>website.com</h6>
                   </div>
@@ -271,7 +272,7 @@ var App = {
         <td>${row.index}</td>
         <td>${row.alignment}</td>
         <td>${row.topic}</td>
-        <td>${row.EV}</td>
+        <td>${row.RV}</td>
         <td>${row.AV}</td>
         <td><a href='${row.post}'>Link</a></td>
         <td>${row.post_source}</td>
@@ -288,10 +289,10 @@ var App = {
     let lN = this.db({alignment: 'left'}).count();
     let rN = this.db({alignment: 'right'}).count();
 
-    let likeN = this.db({EV: [-1, 1]}).count();
-    let commentN = this.db({EV: [-3, 3]}).count();
-    let shareN = this.db({EV: [-5, 5]}).count();
-    let ignoreN = this.db({EV: 0}).count();
+    let likeN = this.db({RV: [-1, 1]}).count();
+    let commentN = this.db({RV: [-3, 3]}).count();
+    let shareN = this.db({RV: [-5, 5]}).count();
+    let ignoreN = this.db({RV: 0}).count();
 
     $('.post-count').text(f(nTot));
     $('.post-count-liberal').text(f(lN));

@@ -7,9 +7,9 @@ div.post {
   text-align: left;
   font-family: system, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif; }
   div.post.left {
-    background-color: rgba(0, 0, 255, 0.05); }
+    background-color: rgba(78, 128, 198, 0.3); }
   div.post.right {
-    background-color: rgba(255, 0, 0, 0.05); }
+    background-color: rgba(198, 78, 78, 0.3); }
 
 div.post .header .profile-photo {
   vertical-align: middle;
@@ -124,25 +124,28 @@ div.post .actions {
         font-weight: 600; }
 
 .icon {
-  background-image: url("../images/actions-edited.png");
+  background-image: url("../images/likert-emotions/sheet.svg");
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 2px; }
-  .icon.like {
-    background-size: 21px 1121px;
-    background-position: 0 -358px; }
-  .icon.comment {
-    background-size: 21px 1121px;
-    background-position: 0 -282px; }
-  .icon.share {
-    background-size: 21px 1121px;
-    background-position: 0 -529px; }
-  .icon.ignore {
-    background-size: 21px 1121px;
-    background-position: 0 -42px; }
+  margin-right: 3px; }
+  .icon.very-dissatisfied {
+    background-size: 160px 40px;
+    background-position: -10px -10px; }
+  .icon.dissatisfied {
+    background-size: 160px 40px;
+    background-position: -40px -10px; }
+  .icon.neutral {
+    background-size: 160px 40px;
+    background-position: -70px -10px; }
+  .icon.satisfied {
+    background-size: 160px 40px;
+    background-position: -100px -10px; }
+  .icon.very-satisfied {
+    background-size: 160px 40px;
+    background-position: -130px -10px; }
 
 @media only screen and (max-width: 460px) {
   div.post .actions {

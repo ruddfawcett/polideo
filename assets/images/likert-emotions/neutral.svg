@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>neutral</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-70.000000, -10.000000)">
+            <g id="neutral" transform="translate(70.000000, 10.000000)">
+                <circle id="head" stroke="#62676F" stroke-width="1.5" cx="10" cy="10" r="9.25"></circle>
+                <path d="M6,14.5 L14,14.5" id="mouth" stroke="#62676F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <g id="eyes" transform="translate(6.000000, 6.000000)" fill="#62676F">
+                    <circle id="right" cx="7" cy="1" r="1"></circle>
+                    <circle id="left" cx="1" cy="1" r="1"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

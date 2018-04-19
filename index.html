@@ -33,28 +33,29 @@
             <p id='post-body'>Loading...</p>
           </div>
           <div class='actions'>
-            <div class='action' data-action='like'>
+            <div class='action' data-action='vds'>
               <div class='container'>
-                <div class='icon like'></div>
-                <h3>Like</h3>
+                <div class='icon very-dissatisfied'></div>
               </div>
             </div>
-            <div class='action' data-action='comment'>
+            <div class='action' data-action='ds'>
               <div class='container'>
-                <div class='icon comment'></div>
-                <h3>Comment</h3>
+                <div class='icon dissatisfied'></div>
               </div>
             </div>
-            <div class='action' data-action='share'>
+            <div class='action' data-action='n'>
               <div class='container'>
-                <div class='icon share'></div>
-                <h3>Share</h3>
+                <div class='icon neutral'></div>
               </div>
             </div>
-            <div class='action' data-action='ignore'>
+            <div class='action' data-action='s'>
               <div class='container'>
-                <div class='icon ignore'></div>
-                <h3>Ignore</h3>
+                <div class='icon satisfied'></div>
+              </div>
+            </div>
+            <div class='action' data-action='vs'>
+              <div class='container'>
+                <div class='icon very-satisfied'></div>
               </div>
             </div>
           </div>
@@ -122,7 +123,7 @@
                 <th>Post</th>
                 <th>Alignment</th>
                 <th>Topic</th>
-                <th>EV</th>
+                <th>RV</th>
                 <th>AV</th>
                 <th>Post</th>
                 <th>Source</th>
@@ -209,28 +210,32 @@
             </td>
           </tr>
           <tr>
-            <td><em>EV</em><br />Engagement Value</td>
-            <td>The weighted, raw value as mapped to possible engagement actions: like, comment, share, or ignore. Engagement Values (EV) for liberal posts are negatively signed, while EV for conservative posts are positively signed.
+            <td><em>RV</em><br />Reaction Value</td>
+            <td>The weighted, raw value as mapped to possible reaction actions on a Likert-scale: very negative, negative, neutral, positive, or very positive. Reaction Values (RV) are inversely signed depending on the affiliation, e.g. a &ldquo;very positive&rdquo; reaction (\( RV = 2.0 \)) for a liberal post will still tend towards the &ldquo;left&rdquo; (liberalism, negative direction, \( RV_{adj} = -2.0 \)) and a &ldquo;very negative&rdquo; reaction (\( RV = -2.0 \)) for a liberal post will still tend to the &ldquo;right&ldquo; (conservatism, positive direction, \( RV_{adj} = 2.0 \)).
               <table>
                 <tr>
-                  <th>Engagement Action (EA)</th>
-                  <th>Engagement Value (EV)</th>
+                  <th>Reaction</th>
+                  <th>Reaction Value (RV)</th>
                 </tr>
                 <tr>
-                  <td>like</td>
-                  <td>&plusmn; 1</td>
+                  <td>very negative</td>
+                  <td>&minus; 2.0</td>
                 </tr>
                 <tr>
-                  <td>comment</td>
-                  <td>&plusmn; 3</td>
+                  <td>negative</td>
+                  <td>&minus; 1.0</td>
                 </tr>
                 <tr>
-                  <td>share</td>
-                  <td>&plusmn; 5</td>
+                  <td>neutral</td>
+                  <td>&plusmn; 0.0</td>
                 </tr>
                 <tr>
-                  <td>ignore</td>
-                  <td>0</td>
+                  <td>positive</td>
+                  <td>&plus; 1.0</td>
+                </tr>
+                <tr>
+                  <td>very positive</td>
+                  <td>&plus; 2.0</td>
                 </tr>
               </table>
             </td>
@@ -253,7 +258,7 @@
               <div class='mathjax'>
                 \[
                   \begin{equation*}
-                  AE = AR (\Sigma_{x=1}^{n} EV |a_x = A)
+                  AE = AR (\Sigma_{x=1}^{n} RV |a_x = A)
                   \end{equation*}
                 \]
               </div>
@@ -270,11 +275,7 @@
         <p>As combining engagement values without wanting to surpass a limit (-1 or 1) clearly implies an infinite series, the following formula was derived from a P-series consisting of an infinite sum of fractional values:</p>
         <div class='mathjax'>
           \[
-            f_{AV}(EV,\ AV_{n-1}) = AV_{n-1} \ + \
-            \begin{cases}
-             (\frac{EV}{5})((1-|AV|)^2) & \text{if } |EV+AV| \geq |AV| \\
-           - (\frac{EV}{5})((1-|AV|)^2) & \text{if } |EV+AV| < |AV|
-            \end{cases}
+            f_{AV}(AV_{n-1}, \ RV) = AV_{n-1} \ + \ (\frac{RV}{{RV_{max} - RV_{min}}})((1-|AV|)^2)
           \]
         </div>
       </section>
@@ -293,6 +294,7 @@
 
     <script type='text/x-mathjax-config'>
       MathJax.Hub.Config({
+        jax: ['output/svg'],
         tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
         displayAlign: 'left'
       });

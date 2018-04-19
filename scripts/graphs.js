@@ -47,8 +47,8 @@ var graph = Highcharts.chart('av-ev-graph', {
       title: {
         text: null
       },
-      min: -5,
-      max: 5,
+      min: -2,
+      max: 2,
       alignTicks: false,
       gridLineColor: '#e5e5e5'
     }
