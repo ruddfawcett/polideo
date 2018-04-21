@@ -1,0 +1,44 @@
+extends ./includes/layout.pug
+
+include ./includes/fb-post.pug
+include ./includes/likert-scale.pug
+include ./includes/test-tabs.pug
+
+block vars
+  - path = 'Test'
+
+block styles
+  link(rel='stylesheet', href='/static/assets/styles/test.css')
+
+block content
+  .test-container
+    header
+      nav
+        ul
+          li About
+          li Polideo
+          li Contact
+    main
+      .container.intro-wrapper
+        h2 Facebook&rsquo;s algorithms know your political ideology and soon we will too.
+        a(class='button' id='get-started') Prove it.
+        h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.      
+      .hidden-posts
+        - each post in posts
+          
+      //- .container.post-wrapper
+      //-   h2 If this post came up in your newsfeed, how would you feel?
+      //-   +fb-post
+      //-   +likert-scale
+      //- .container.conclusion-wrapper
+      //-   h2 According to our calculations, you're #[b#political-ideology far left].
+      //-   h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
+      //-   +test-tabs
+
+    footer
+      h5 
+      .bar
+        .fill
+
+block scripts
+  

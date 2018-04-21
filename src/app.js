@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const sass = require('node-sass-middleware');
 
+const routes =  require('./routes/')
+
 var express = require('express');
 var app = express();
 
@@ -30,13 +32,7 @@ app.use(
 
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
-app.get('/', (req, res, next) => {
-  return res.render('quiz');
-})
-
-app.get('/quiz', (req, res, next) => {
-  return res.render('quiz');
-})
+app.get('/test', )
 
 app.get('*', (req, res, next) => {
   res.render('404', { status: 404, url: req.url });

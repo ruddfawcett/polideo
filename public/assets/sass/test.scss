@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.quiz-container {
+.test-container {
   height: 100%;
   overflow: auto;
 
@@ -27,9 +27,6 @@
   &.left, &.right {
     header {
       border-bottom: 0.5px solid rgba(#EFEFEF, 0.5);
-    }
-    footer {
-      display: none;
     }
   }
 }
@@ -71,7 +68,7 @@ header {
   transform: translateY(50%);
   text-align: center;
 
-  &.intro {
+  &.intro-wrapper {
     max-width: 600px;
   }
 
@@ -109,7 +106,7 @@ header {
   }
 }
 
-.container.conclusion-wrapper {
+.conclusion-wrapper, .intro-wrapper {
   max-width: 650px;
 }
 
@@ -165,7 +162,9 @@ footer {
 
     .fill {
       background-color: black;
-      width: 0;
+      width: 100%;
+      height: 100%;
+      transition: width 2s;
     }
   }
 }
