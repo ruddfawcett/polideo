@@ -1,5 +1,13 @@
 $blue: #4267b2;
 
+div.post-container {
+  background-color: #F5F5F5;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 500px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
 div.post {
   background-color: white;
   padding: 14px;
@@ -64,7 +72,6 @@ div.post .header {
 
 div.post .body {
   margin-top: 8px;
-  padding-bottom: 6px;
 
   p {
     color: black;
@@ -98,7 +105,6 @@ div.post .body {
     }
 
     .deck {
-      // max-height: 140px;
       height: auto;
       margin: 10px 12px;
 
@@ -131,83 +137,6 @@ div.post .body {
   }
 }
 
-div.post .actions {
-  border-top: 1px solid #e5e5e5;
-  color: #616770;
-  font-size: 13px;
-  padding-top: 12px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-
-  .action {
-    flex: 1;
-    padding: 6px 0;
-    margin: 0 4px;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &:hover {
-      cursor: pointer;
-      background-color: #F6F6F7;
-    }
-
-    .container {
-      margin: 0 auto;
-      text-align: center;
-
-      h3 {
-        display: inline-block;
-        vertical-align: middle;
-        color: #616770;
-        font-size: 13px;
-        line-height: 14px;
-        font-weight: 600;
-      }
-    }
-  }
-}
-
-.icon {
-  background-image: url('../images/likert-emotions/sheet.svg');
-  background-repeat: no-repeat;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 3px;
-
-  &.very-dissatisfied {
-    background-size: 160px 40px;
-    background-position: -10px -10px;
-  }
-
-  &.dissatisfied {
-    background-size: 160px 40px;
-    background-position: -40px -10px;
-  }
-
-  &.neutral {
-    background-size: 160px 40px;
-    background-position: -70px -10px;
-  }
-
-  &.satisfied {
-    background-size: 160px 40px;
-    background-position: -100px -10px;
-  }
-
-  &.very-satisfied {
-    background-size: 160px 40px;
-    background-position: -130px -10px;
-  }
-}
 
 @media only screen and (max-width: 460px) {
   div.post .actions {

@@ -1,5 +1,9 @@
 extends ./includes/layout.pug
 
+include ./includes/fb-post.pug
+include ./includes/likert-scale.pug
+include ./includes/quiz-tabs.pug
+
 block vars
   - path = 'Quiz'
 
@@ -7,15 +11,28 @@ block styles
   link(rel='stylesheet', href='/static/assets/styles/quiz.css')
 
 block content
-  header
-    h3 About
-    h1 Polideo
-    h3 Contact
-  main
-    .intro
-      h2 Facebook’s algorithms may know your political ideology better than you do.
-      a(class='button' href='google.com') Prove it.
-      h5 Welcome to Polideo, a platform where you can visually see what impact your likes, comments, and shares on Facebook could have on your perceived political ideology.
+  .quiz-container.right
+    header
+      nav
+        ul
+          li About
+          li Polideo
+          li Contact
+    main
+      //- .container.intro
+      //-   h2 Facebook’s algorithms may know your political ideology better than you do.
+      //-   a(class='button' id='get-started') Prove it.
+      //-   h5 Welcome to Polideo, a platform where you can visually see what impact your likes, comments, and shares on Facebook could have on your perceived political ideology.
+      //- .container.post-wrapper
+      //-   h2 If this post came up in your newsfeed, how would you feel?
+      //-   +fb-post
+      //-   +likert-scale
+      .container.conclusion-wrapper
+        h2 According to our calculations, you're #[b#political-ideology far left].
+        h5 Welcome to Polideo, a platform where you can visually see what impact your likes, comments, and shares on Facebook could have on your perceived political ideology.
+        +quiz-tabs
 
-  .bar
-    .fill as
+    footer
+      h5 #[span#post-idx 0] / #[span#post-count 0] Remaining
+      .bar
+        .fill

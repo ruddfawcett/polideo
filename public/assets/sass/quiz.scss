@@ -2,29 +2,35 @@
   box-sizing: border-box;
 }
 
-body {
+.quiz-container {
+  height: 100%;
+  overflow: auto;
 
   &.left {
     background-color: #327AF1;
     color: white;
+
+    .ui-tabs-active {
+      border-bottom: 0.5px solid #327AF1;
+    }
   }
 
   &.right {
     background-color: #EB4F50;
     color: white;
+
+    .ui-tabs-active {
+      border-bottom: 0.5px solid #EB4F50;
+    }
   }
-}
 
-.bar {
-  background-color: #B8B8B8;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  height: 18px;
-
-  .fill {
-    background-color: black;
-    width: 15%;
+  &.left, &.right {
+    header {
+      border-bottom: 0.5px solid rgba(#EFEFEF, 0.5);
+    }
+    footer {
+      display: none;
+    }
   }
 }
 
@@ -32,44 +38,54 @@ header {
   padding: 48px 64px;
   width: 100%;
 
-  h1,h3 {
-    display: inline-block;
-    vertical-align: middle;
-  }
+  ul {
+    list-style: none;
 
-  h1 {
-    font-size: 20px;
-    text-align: center;
-    font-weight: 700;
-    width: 100%;
-  }
+    li {
+      display: inline-table;
+      width: 33%;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
 
-  h3 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+      &:nth-child(2) {
+        text-align: center;
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: 20px;
+        font-weight: 700;
+      }
 
-    &:last-of-type {
-      float: right;
+      &:last-of-type {
+        text-align: right;
+      }
     }
   }
 }
 
-.intro {
-  max-width: 548px;
+.container {
+  padding: 0 24px;
   margin: 0 auto;
   top: 50%;
   transform: translateY(50%);
   text-align: center;
 
+  &.intro {
+    max-width: 600px;
+  }
+
   h2 {
-    font-size: 32px;
+    font-size: 30px;
     margin-bottom: 48px;
     line-height: 36px;
   }
 
   a {
+    &:hover {
+      cursor: pointer;
+    }
+
     &.button {
       display: inline-block;
       background-color: black;
@@ -86,5 +102,149 @@ header {
   h5 {
     font-size: 14px;
     line-height: 20px;
+  }
+
+  .action {
+    padding: 12px 24px;
+  }
+}
+
+.container.conclusion-wrapper {
+  max-width: 650px;
+}
+
+ul.tabs-headers {
+  list-style: none;
+  padding: 0;
+  border-bottom: 0.5px solid rgba(#EFEFEF, 0.5);
+  margin-top: 48px;
+
+  li {
+    margin-right: 24px;
+    display: inline-table;
+    margin-bottom: -0.5px;
+    outline: none;
+    position: relative;
+    z-index: 999;
+    top: 0.5px;
+    border: 0.5px solid rgba(#EFEFEF, 0.5);
+    border-bottom: none;
+
+    // &:first-child {
+    //   margin-left: 20px;
+    // }
+
+    a {
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 12px;
+      display: block;
+      padding: 12px 24px;
+      outline: none;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  h5 {
+    margin: 0 0 24px 36px;
+    font-size: 16px;
+  }
+
+  .bar {
+    width: 100%;
+    background-color: #B8B8B8;
+    height: 18px;
+
+    .fill {
+      background-color: black;
+      width: 0;
+    }
+  }
+}
+
+.likert-scale {
+  width: auto;
+  margin-top: 48px;
+
+  .likert-reaction {
+    border: 1px solid #e5e5e5;
+    display: inline-table;
+    padding: 16px 36px;
+    margin: 18px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #212121;
+      cursor: pointer;
+      color: white;
+
+      .icon {
+        background-image: url('../images/likert-emotions/sheet-light.svg');
+      }
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .content {
+      margin: 0 auto;
+      text-align: center;
+
+      h3 {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.icon {
+  background-image: url('../images/likert-emotions/sheet-dark.svg');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+
+  &.very-dissatisfied {
+    background-size: 160px 40px;
+    background-position: -10px -10px;
+  }
+
+  &.dissatisfied {
+    background-size: 160px 40px;
+    background-position: -40px -10px;
+  }
+
+  &.neutral {
+    background-size: 160px 40px;
+    background-position: -70px -10px;
+  }
+
+  &.satisfied {
+    background-size: 160px 40px;
+    background-position: -100px -10px;
+  }
+
+  &.very-satisfied {
+    background-size: 160px 40px;
+    background-position: -130px -10px;
   }
 }

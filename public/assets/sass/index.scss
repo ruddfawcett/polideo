@@ -1,7 +1,7 @@
 @import 'facebook.scss';
 @import 'table.scss';
 
-$body-text: rgba(#101822, 1);
+$body-text: black;
 
 * {
   margin: 0;
@@ -26,6 +26,11 @@ body, html {
 
 body {
   font-family: system, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif;
-  padding-top: 66px;
+  // padding-top: 66px;
   color: $body-text;
+}
+
+.wrapper {
+  overflow: auto;
+  min-height: 100%;
 }
