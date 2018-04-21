@@ -1,0 +1,17 @@
+// Created by Rudd Fawcett '18 & Nicholas Toldalagi '18.
+doctype html5
+html(lang='en')
+  block vars
+  head
+    title Polideo: #{path}
+    link(rel='stylesheet', href='/static/assets/styles/index.css')
+    block styles
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+  body
+    div.wrapper
+      include header.pug
+      block content
+    //- include footer.pug
+    include analytics.pug
+
+    block scripts

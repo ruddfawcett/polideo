@@ -1,0 +1,21 @@
+extends ./includes/layout.pug
+
+block vars
+  - path = 'Quiz'
+
+block styles
+  link(rel='stylesheet', href='/static/assets/styles/quiz.css')
+
+block content
+  header
+    h3 About
+    h1 Polideo
+    h3 Contact
+  main
+    .intro
+      h2 Facebook’s algorithms may know your political ideology better than you do.
+      a(class='button' href='google.com') Prove it.
+      h5 Welcome to Polideo, a platform where you can visually see what impact your likes, comments, and shares on Facebook could have on your perceived political ideology.
+
+  .bar
+    .fill as

@@ -30,6 +30,10 @@ app.use(
 
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
+app.get('/', (req, res, next) => {
+  return res.render('quiz');
+})
+
 app.get('/quiz', (req, res, next) => {
   return res.render('quiz');
 })
