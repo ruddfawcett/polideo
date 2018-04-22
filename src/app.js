@@ -10,6 +10,9 @@ const routes =  require('./routes/')
 var express = require('express');
 var app = express();
 
+var router = express.Router();
+router = require('./routes/')(router);
+
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
@@ -30,12 +33,13 @@ app.use(
   })
 );
 
-app.use('/static', express.static(path.join(__dirname, '../public')));
-
-app.get('/test', )
-
-app.get('*', (req, res, next) => {
-  res.render('404', { status: 404, url: req.url });
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
 });
+
+app.use('/static', express.static(path.join(__dirname, '../public')));
+app.use('/', router);
 
 module.exports = app;
