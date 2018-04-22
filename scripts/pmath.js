@@ -1,7 +1,6 @@
 var PMath = {
-  VOLATILITY: 1,
-  PAV: 0,
-  RVMAX: 4,
+  VOLATILITY: 0.76,
+  RVMAX: 2,
   AR: function(sumA, totN) {
     return sumA / totN;
   },
@@ -15,11 +14,16 @@ var PMath = {
     return AV + this.fDAV(IA, RV, AV);
   },
   fDAV: function(IA, RV, AV) {
-    if (Math.abs(RV + AV) >= Math.abs(AV)) {
-      return (RV / this.RVMAX) * Math.pow((1 - Math.abs(AV)), 2);
+    let jump = (RV / this.RVMAX) * Math.pow((1 - Math.abs(AV)), 2);
+
+    function s() {
+      return  ((RV < 0 && AV < 0) || (RV > 0 && AV > 0)) ? true : false;
     }
-    else {
-      return this.VOLATILITY * (RV / this.RVMAX) * Math.pow((1 - Math.abs(AV)), 2);
+
+    if (s()) {
+      return this.VOLATILITY * jump;
     }
+
+    return jump;
   }
 }
