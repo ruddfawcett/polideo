@@ -5,7 +5,7 @@ Promise.promisifyAll(Graph);
 var request = require('request-promise');
 var url = require('url');
 
-Graph.setAccessToken('EAACEdEose0cBAOuJIqnJzp6MHRHJpzJOCy00ZCGRZBbrJzj8OiXSfBcWu4PS7dwDI1hY2jcFiLDsfVWEXsgWhnp2Lt6rYuCqncniwx4A28fGEmX0pYr4qfZAcNefqQ0mJcZC2q90U9yKKhI1iKGn2lwdJmZCSCvZAfG2NyHz2jmT1wMJ1auUhSd4lsZBnxqoKnwasRuBKaWklCvsz1wvhVM');
+Graph.setAccessToken('EAACEdEose0cBAG3jt7QM3t2AuZCc8aZBlntw6XQDvUJZBy6AmVSz9XjSXfoAPEZC2mXTbTkUXZASdsnlvI4mkVNS90g9pRB8T3vUOZCIGvMUzZAtldRmtweYoRj4OMAGfJC2cQXaQlSi0E4ZCf9ZAwVTyamjqLmaX27lzobLeBnXm4oB9GClElwPQVNkHKGt9T1G7IHmpLdLfoHw483a65XQx');
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 

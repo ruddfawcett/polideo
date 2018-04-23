@@ -24,9 +24,10 @@ block content
           h2 Facebook&rsquo;s algorithms know your political ideology and soon we will too.
           a(class='button' id='start') Prove it.
           h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
-        each post in posts
-          div.slide.post-slide
+        each post, index in posts
+          if index = 0
             h2 If this post came up in your newsfeed, how would you feel?
+          div.slide.post-slide
             +fb-post(post)
             +likert-scale
         div.slide.conclusion-slide

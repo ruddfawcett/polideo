@@ -35,6 +35,10 @@
 header {
   padding: 48px 64px;
   width: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: white;
+  border-bottom: 0.5px solid rgba(#EFEFEF, 1);
 
   ul {
     list-style: none;
@@ -70,13 +74,14 @@ header {
 }
 
 .container {
-  padding: 50px 24px;
+  padding: 175px 24px 0 24px;
   margin: 0 auto;
   text-align: center;
   position: absolute;
   width: 100%;
-  min-height: 750px;
-  overflow-x: hidden;
+  min-height: 250px;
+  overflow: auto;
+  height: 100%;
 
   h2 {
     font-size: 30px;
@@ -125,6 +130,10 @@ header {
 
   &.current {
     display: block;
+
+    &.post-slide {
+      min-width: 100%;
+    }
   }
 }
 
@@ -187,6 +196,7 @@ footer {
 .likert-scale {
   width: auto;
   margin-top: 48px;
+  margin-bottom: 100px;
 
   .likert-reaction {
     border: 1px solid #e5e5e5;

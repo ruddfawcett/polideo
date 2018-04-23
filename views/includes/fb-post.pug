@@ -9,4 +9,21 @@ mixin fb-post(post)
             | 7hrs · 
             i.public
       .body
-        p#post-body Loading...
+        p#post-body #{post.data.message}
+        if post.data.attachment
+          .media
+            .image(style='background-image: url("' + post.data.full_picture + '");')
+            .deck
+              h1 #{post.data.attachment.title}
+              p #{post.data.attachment.description}
+              h6 website.com
+        
+        //- 
+        //- $(`<div class='media' id='post-attachment'>
+        //-       <div class='image' id='post-full_picture'></div>
+        //-       <div class='deck'>
+        //-         <h1 id='post-attachment-title'>Mei elitr RVeriri rationibus id nulla expetenda pro ad</h1>
+        //-         <p id='post-attachment-description'>Ea his partem erroribus, est ea labore utroque delectus, sea meliore platonem ut. Ex odio diam voluptatibus sea, doming mollis civibus ea nec.</p>
+        //-         <h6 class='reveal-text' id='post-attachment-source' data-default='website.com'>website.com</h6>
+        //-       </div>
+        //-     </div>`).inser
