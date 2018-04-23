@@ -1,12 +1,11 @@
 var Promise = require('bluebird');
-
 var Graph = require('fbgraph');
 Promise.promisifyAll(Graph);
 
 var request = require('request-promise');
 var url = require('url');
 
-Graph.setAccessToken('EAACEdEose0cBAJBbwUD07f4uo9cbjhtOj3ZBVswCmp91ZB585EGMCH7PBvtQK840GO4WGBBMIZC1vrQpPneV4hgPzGbvZBm8xQ4kvLhWZCBGqUQ06kEHVRwgqhEbZBNq8cHMYs3lcLU8nAG9HE8ifB6vUV1ZChSbZAJCQ8YedrS2ZBLJb4gOuxw1VMHh27aWuTHe6IbroiW7vjA8a6knTcOof');
+Graph.setAccessToken('EAACEdEose0cBAOuJIqnJzp6MHRHJpzJOCy00ZCGRZBbrJzj8OiXSfBcWu4PS7dwDI1hY2jcFiLDsfVWEXsgWhnp2Lt6rYuCqncniwx4A28fGEmX0pYr4qfZAcNefqQ0mJcZC2q90U9yKKhI1iKGn2lwdJmZCSCvZAfG2NyHz2jmT1wMJ1auUhSd4lsZBnxqoKnwasRuBKaWklCvsz1wvhVM');
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 

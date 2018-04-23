@@ -19,21 +19,20 @@ block content
           li Polideo
           li Contact
     main
-      .container.intro-wrapper
-        h2 Facebook&rsquo;s algorithms know your political ideology and soon we will too.
-        a(class='button' id='get-started') Prove it.
-        h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.      
-      .hidden-posts
-        - each post in posts
-          
-      //- .container.post-wrapper
-      //-   h2 If this post came up in your newsfeed, how would you feel?
-      //-   +fb-post
-      //-   +likert-scale
-      //- .container.conclusion-wrapper
-      //-   h2 According to our calculations, you're #[b#political-ideology far left].
-      //-   h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
-      //-   +test-tabs
+      .container
+        div.slide.intro-slide.current
+          h2 Facebook&rsquo;s algorithms know your political ideology and soon we will too.
+          a(class='button' id='start') Prove it.
+          h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
+        each post in posts
+          div.slide.post-slide
+            h2 If this post came up in your newsfeed, how would you feel?
+            +fb-post(post)
+            +likert-scale
+        div.slide.conclusion-slide
+          h2 According to our calculations, you're #[b#political-ideology far left].
+          h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
+          +test-tabs
 
     footer
       h5 
@@ -41,4 +40,4 @@ block content
         .fill
 
 block scripts
-  
+  script(src='./static/js/test.js')
