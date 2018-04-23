@@ -6,7 +6,7 @@ Promise.promisifyAll(Graph);
 var request = require('request-promise');
 var url = require('url');
 
-Graph.setAccessToken('EAACEdEose0cBACmJ9L57t6ymliGQxzcnysRf0y4ZAMZBhrYxDXDzpLzhRFGeZCBCzYpsXTGk5QP8yEBGltesVD0nZBK4WvYYOaEduyAqe1nzBNtzD2XDHNdplVi7Rng5gAwTZB0JxLRgwJBIxP3ccEXDBDYdYlWPeXpohLjB4OZAoRhhcvLTY7L14GKN1rcen853eUFK3VeH5ZAFeh6l3Ew');
+Graph.setAccessToken('EAACEdEose0cBAJBbwUD07f4uo9cbjhtOj3ZBVswCmp91ZB585EGMCH7PBvtQK840GO4WGBBMIZC1vrQpPneV4hgPzGbvZBm8xQ4kvLhWZCBGqUQ06kEHVRwgqhEbZBNq8cHMYs3lcLU8nAG9HE8ifB6vUV1ZChSbZAJCQ8YedrS2ZBLJb4gOuxw1VMHh27aWuTHe6IbroiW7vjA8a6knTcOof');
 
 const POST_TOPICS = ['president-trump', 'health-care', 'guns', 'abortion', 'isis', 'budget', 'executive-order', 'immigration'];
 
@@ -85,6 +85,7 @@ module.exports = {
         else {
           if (response.attachments && response.attachments.data.length > 0) {
             let attachment = response.attachments.data[0];
+            data.full_picture = response.full_picture ? response.full_picture : '';
             data.attachment = {};
 
             data.attachment.title = attachment.title ? attachment.title : '';
