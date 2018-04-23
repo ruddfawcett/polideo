@@ -61,8 +61,9 @@ module.exports = {
   },
   find_page: (posts) => {
     return Promise.map(posts, (post) => {
-      return Graph.getAsync(post.pagename, { fields: '' }).then((res) => {
+      return Graph.getAsync(post.pagename, { fields: 'picture' }).then((res) => {
         post.page_id = res.id;
+        post.picture = res.picture.data.url;
         return post;
       });
     });
@@ -73,6 +74,7 @@ module.exports = {
         fields: 'attachments{media,description,title, url},message,full_picture,created_time,status_type'
       }).then((response) => {
         var data = {};
+        data.status_type = response.status_type;
 
         data.message = response.message ? response.message : '';
 

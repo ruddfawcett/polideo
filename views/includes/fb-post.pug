@@ -2,21 +2,26 @@ mixin fb-post(post)
   #fb-post.post-container
     .post
       .header
-        .profile-photo
+        img.profile-photo(src=post.picture)
         .meta
-          h3#post-page.reveal-text(data-default='Untitled Page') Untitled Page
-          p#post-timestamp
+          h3#post-page.reveal-text(data-default='Untitled Page') #{post.from}
+          p
             | 7hrs · 
             i.public
       .body
-        p#post-body #{post.data.message}
-        if post.data.attachment
-          .media
-            .image(style='background-image: url("' + post.data.full_picture + '");')
-            .deck
-              h1 #{post.data.attachment.title}
-              p #{post.data.attachment.description}
-              h6 website.com
+        p #{post.data.message}
+        if post.data.status_type == 'added_photos'
+          if post.data.full_picture
+            .media
+              img(src=post.data.full_picture)
+        else
+          if post.data.attachment
+            .media
+              .image(style='background-image: url("' + post.data.full_picture + '");')
+              .deck
+                h1 #{post.data.attachment.title}
+                p #{post.data.attachment.description}
+                h6 website.com
         
         //- 
         //- $(`<div class='media' id='post-attachment'>
