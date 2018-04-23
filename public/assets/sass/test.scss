@@ -12,7 +12,7 @@
     color: white;
 
     .ui-tabs-active {
-      border-bottom: 0.5px solid #327AF1;
+      border-bottom: 3px solid #327AF1;
     }
   }
 
@@ -21,13 +21,14 @@
     color: white;
 
     .ui-tabs-active {
-      border-bottom: 0.5px solid #EB4F50;
+      border-bottom: 3px solid #EB4F50;
     }
   }
 
   &.left, &.right {
     header {
       border-bottom: 0.5px solid rgba(#EFEFEF, 0.5);
+      background: none;
     }
   }
 }
