@@ -58,6 +58,10 @@ var App = {
     let alignment = post.attr('data-alignment');
     let topic = post.attr('data-topic');
 
+    // scale
+    // liberal post
+    // -2， -1， 0， 1， 2
+    console.log(alignment);
     let sign = alignment == 'left' ? -1 : 1;
     let RV = sign * POINT_VALUES[action_tag];
 
