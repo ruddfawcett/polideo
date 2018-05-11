@@ -1,29 +1,24 @@
 extends ./includes/layout.pug
 
-include ./includes/fb-post.pug
-include ./includes/likert-scale.pug
-include ./includes/test-tabs.pug
+include ./test/fb-post.pug
+include ./test/likert-scale.pug
+include ./test/test-tabs.pug
 
 block vars
   - path = 'Test'
+  - test = true
 
 block styles
   link(rel='stylesheet', href='/static/assets/styles/test.css')
 
 block content
-  .test-container
-    header
-      nav
-        ul
-          li About
-          li Polideo
-          li Contact
-    main
-      .container
-        div.slide.intro-slide.current
-          h2 Facebook&rsquo;s algorithms know your political ideology and soon we will too.
-          a(class='button' id='start') Prove it.
-          h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
+  main
+    .container
+      div.slide.intro-slide.current
+        h2 Facebook&rsquo;s algorithms know your political ideology and soon we will too.
+        a(class='button' id='start') Prove it.
+        h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
+      if posts
         each post, index in posts
           div.slide.post-slide
             if index == 0
@@ -35,10 +30,10 @@ block content
           h5 Welcome to Polideo, a platform where you can visually see what impact your interaction on Facebook could have on your perceived political ideology.
           +test-tabs
 
-    footer
-      h5 
-      .bar
-        .fill
+  footer
+    h5 
+    .bar
+      .fill
 
 block scripts
   script(src='./static/js/test.js')

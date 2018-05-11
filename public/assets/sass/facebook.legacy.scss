@@ -1,0 +1,224 @@
+$blue: #4267b2;
+
+div.post {
+  background-color: white;
+  padding: 14px;
+  border: 1px solid #dddfe2;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+  font-family: system, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif;
+
+  &.left {
+    background-color: rgba(#4e80c6, 0.3);
+  }
+
+  &.right {
+    background-color: rgba(#c64e4e, 0.3);
+  }
+}
+
+div.post .header {
+  .profile-photo {
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #E9EBEE;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #dddfe2;
+    margin-right: 6px;
+  }
+
+  .meta {
+    display: inline-block;
+    vertical-align: middle;
+
+    h3 {
+      font-size: 14px;
+      line-height: 19px;
+      color: $blue;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 12px;
+      color: #616770;
+      line-height: 16px;
+      font-weight: 400;
+
+      .public {
+        margin-bottom: -2px;
+        display: inline-block;
+        background-image: url('../images/icons.png');
+        background-position: -51px -226px;
+        background-size: 64px 464px;
+        background-repeat: no-repeat;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+div.post .body {
+  margin-top: 8px;
+  padding-bottom: 6px;
+
+  p {
+    color: black;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .media {
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .1) inset, 0 1px 1px rgba(0, 0, 0, .05);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .image {
+      background-color: #E9EBEE;
+      width: 100%;
+      min-height: 250px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    img {
+      max-width: 100%;
+      margin-bottom: 8px;
+      display: block;
+      background-color: transparent;
+    }
+
+    .deck {
+      // max-height: 140px;
+      height: auto;
+      margin: 10px 12px;
+
+      h1 {
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 5px;
+        max-height: 110px;
+        word-wrap: break-word;
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        max-height: 80px;
+        overflow: hidden;
+      }
+
+      h6 {
+        padding: 18px 0 12px 0;
+        color: #606770;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 11px;
+      }
+    }
+  }
+}
+
+div.post .actions {
+  border-top: 1px solid #e5e5e5;
+  color: #616770;
+  font-size: 13px;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  .action {
+    flex: 1;
+    padding: 6px 0;
+    margin: 0 4px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #F6F6F7;
+    }
+
+    .container {
+      margin: 0 auto;
+      text-align: center;
+
+      h3 {
+        display: inline-block;
+        vertical-align: middle;
+        color: #616770;
+        font-size: 13px;
+        line-height: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.icon {
+  background-image: url('/static/images/likert-emotions/sheet.svg');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 3px;
+
+  &.very-dissatisfied {
+    background-size: 160px 40px;
+    background-position: -10px -10px;
+  }
+
+  &.dissatisfied {
+    background-size: 160px 40px;
+    background-position: -40px -10px;
+  }
+
+  &.neutral {
+    background-size: 160px 40px;
+    background-position: -70px -10px;
+  }
+
+  &.satisfied {
+    background-size: 160px 40px;
+    background-position: -100px -10px;
+  }
+
+  &.very-satisfied {
+    background-size: 160px 40px;
+    background-position: -130px -10px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  div.post .actions {
+    flex-wrap: wrap;
+
+    .action {
+      .container {
+        h3 {
+          display: none;
+        }
+      }
+    }
+  }
+}

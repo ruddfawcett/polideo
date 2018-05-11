@@ -3,14 +3,22 @@ doctype html5
 html(lang='en')
   block vars
   head
-    title Polideo &mdash; #{path}
+    if path
+      title Polideo &mdash; #{path}
+    else
+      title Polideo
     link(rel='stylesheet', href='/static/assets/styles/index.css')
     block styles
     meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
   body
     div.wrapper
-      include header.pug
-      block content
+      if test
+        div.test-container
+          include header.pug
+          block content
+      else
+        include header.pug
+        block content
     //- include footer.pug
     include analytics.pug
 

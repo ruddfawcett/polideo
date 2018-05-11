@@ -6,6 +6,10 @@ module.exports = function(router) {
     next();
   });
 
+  router.get('/', (req, res, next) => {
+    return res.render('index-legacy');
+  });
+
   router.get('/test', test.get);
 
   router.get('/posts/:count', (req, res, next) => {
